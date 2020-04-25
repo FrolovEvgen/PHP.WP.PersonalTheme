@@ -139,7 +139,7 @@ nav.navbar .menu .item a:hover {
     padding-bottom: 10px;
 }    
 #content h1 { 
-    margin: 6px;
+    margin: 10px 6px;
     text-align: center;
     font-size: 200%;
     font-weight: bold;
@@ -147,7 +147,7 @@ nav.navbar .menu .item a:hover {
     text-align: center;
 }
 #content h2 { 
-    margin: 4px;
+    margin: 8px 4px;
     text-align: center;
     font-size: 180%;
     font-weight: bold;
@@ -155,7 +155,7 @@ nav.navbar .menu .item a:hover {
     text-align: center;
 }
 #content h3 {
-    margin: 2px;
+    margin:6px 2px;
     text-align: left;
     font-size: 150%;
     font-weight: bold;
@@ -344,6 +344,15 @@ nav.navbar .menu {
         flex-flow: row nowrap;
         justify-content: space-between;
         align-items: center;
+    }
+    #content h1 { 
+        margin: 20px 6px;
+    }
+    #content h2 { 
+        margin: 15px 4px;
+    }
+    #content h3 {
+        margin: 10px 2px;    
     }
     #top {
         margin-top: 2px;

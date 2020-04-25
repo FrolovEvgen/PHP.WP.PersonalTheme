@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2020 E.Frolov <frolov@amiriset.com>
+ * Copyright 2020 E.Frolov <frolov@amiriset.com>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,29 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/**
- * The main template file.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package WordPress
- * @subpackage EFrolov_Theme
- */
 ?>
 <?php get_header(); ?>
 <section>
     <div id="content" class="container">
-<?php
-    if ( is_home() ) {
-        echo "Home";
-    }
-    if ( have_posts() ) {
-        // Load posts loop.
-	while ( have_posts() ) {
-            the_post();
-        }		
-    }    
-?>
+    <?php the_content(); ?>        
     </div>
 </section>
 <?php get_footer(); ?>
