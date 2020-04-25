@@ -2,7 +2,12 @@
 
 ## Description
 
-WordPress Personal Theme. Made for fun.
+Theme for my personal site. 
+
+## Requirements
+
+Requires WordPress at least: **5.4**
+Requires PHP: **5.6**
 
 ## Link
 

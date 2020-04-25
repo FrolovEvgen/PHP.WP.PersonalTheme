@@ -2,7 +2,7 @@
 /* 
  * The MIT License
  *
- * Copyright 2020 E.Frolov <frolov@amiriset.com>
+ * Copyright 2020 E.Frolov <frolov@amiriset.com>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,28 +23,29 @@
  * THE SOFTWARE.
  */
 /**
- * The main template file.
+ * The template for displaying the footer
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ * Contains the closing of the #content div and all content after.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
  * @package WordPress
  * @subpackage EFrolov_Theme
  */
 ?>
-<?php get_header(); ?>
-<section>
-    <div id="content" class="container">
-<?php
-    if ( is_home() ) {
-        echo "Home";
-    }
-    if ( have_posts() ) {
-        // Load posts loop.
-	while ( have_posts() ) {
-            the_post();
-        }		
-    }
-?>
-    </div>
-</section>
-<?php get_footer(); ?>
+        <br/>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="cell-50">
+                        <p>&nbsp;<?php echo date('Y') ?>&nbsp;©&nbsp;Фролов Е.Ю.</p>
+                    </div>
+                    <div class="cell-50">
+                        <p>e-mail:&nbsp;frolov[AT]amiriset.com</p>
+                    </div>
+                </div>                
+            </div>
+        </footer>
+        <script src="<?=get_resource('/js/script.min.js'); ?>" type="text/javascript"></script>
+    </body>
+</html>
