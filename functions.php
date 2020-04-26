@@ -32,7 +32,12 @@
  */
 
 if (function_exists('add_theme_support')) {
+    // Custom menus.
     add_theme_support('menus');
+
+    //Add thumbnails support for all contents.
+    add_theme_support( 'post-thumbnails' ); 
+
 }
 
 // Register themes style sheets.
@@ -82,3 +87,8 @@ function render_top_menu($menu_name) {
     </ul>';
     echo $menu_list;
 }
+
+/**
+ * Theme shortcodes.
+ */
+require get_template_directory() . '/inc/shortcodes.php';
