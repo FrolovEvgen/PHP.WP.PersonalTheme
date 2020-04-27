@@ -22,6 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+/**
+ * The template for displaying all single pages.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-page
+ *
+ * @package WordPress
+ * @subpackage EFrolov_Theme
+ */
 ?>
 <?php get_header(); ?>
 <section>

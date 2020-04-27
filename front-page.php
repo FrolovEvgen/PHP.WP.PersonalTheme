@@ -23,6 +23,15 @@
  * THE SOFTWARE.
  */
 
+/**
+ * The template for displaying main page.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#front-page-display
+ *
+ * @package WordPress
+ * @subpackage EFrolov_Theme
+ */
+
 get_header();
 section_start();
 print_posts();
