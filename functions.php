@@ -64,6 +64,37 @@ function get_resource ($path) {
 }
 
 /**
+ * Start html content's container.
+ */
+function section_start() {
+    echo '<section><div id="content" class="container">';
+}
+
+/**
+ * Finish html content's container.
+ */
+function section_end() { 
+    echo '</div></section>';
+}
+
+/**
+ * Print all available posts.
+ */
+function print_posts() {
+    if (have_posts()) {
+        // Start the Loop.
+	while ( have_posts() ) :
+            the_post();
+            the_title('<h1>', '</h1>');        
+            the_content();
+        endwhile;
+        
+    } else {
+        echo "111";
+    }
+}
+
+/**
  * Render top menu by saved WP menu configuration.
  * @param string $menu_name Menu configuration name.
  */

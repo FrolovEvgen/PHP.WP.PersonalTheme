@@ -22,11 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-?>
-<?php get_header(); ?>
-			<div id="idContent"><div id="idText">
-				<?php if (have_posts()): while (have_posts()): the_post(); ?>
-					<?php the_content(); ?>
-				<?php endwhile; endif; ?>
-			</div></div>	
-<?php get_footer(); ?>
+
+get_header();
+section_start();
+print_posts();
+section_end();
+get_footer();

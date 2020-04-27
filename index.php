@@ -30,21 +30,9 @@
  * @package WordPress
  * @subpackage EFrolov_Theme
  */
-?>
-<?php get_header(); ?>
-<section>
-    <div id="content" class="container">
-<?php
-    if ( is_home() ) {
-        echo "Home";
-    }
-    if ( have_posts() ) {
-        // Load posts loop.
-	while ( have_posts() ) {
-            the_post();
-        }		
-    }    
-?>
-    </div>
-</section>
-<?php get_footer(); ?>
+
+get_header();
+section_start();
+print_posts();
+section_end();
+get_footer(); 
