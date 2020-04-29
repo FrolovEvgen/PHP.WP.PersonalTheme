@@ -100,24 +100,51 @@ function print_posts() {
  * @param string $menu_name Menu configuration name.
  */
 function render_top_menu($menu_name) {
-    $menu_list = '<ul class="menu">
-        <li class="item active">
-            <a href="#">Обо мне</a>
-        </li>
-        <li class="item">
-            <a href="#">Резюме</a>
-        </li>
-        <li class="item">
-            <a href="#">Работы</a>
-        </li>
-        <li class="item">
-            <a href="#">Блог</a>
-        </li>
-        <li class="item">
-            <a href="#">Написать письмо</a>
-        </li>
-    </ul>';
-    echo $menu_list;
+    
+    $menu_list = '<ul class="menu">';
+    if ($menu_items = wp_get_nav_menu_items($menu_name)) {
+        $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        foreach ((array) $menu_items as $key => $menu_item) {	
+            $title = $menu_item->title;
+            if ($menu_item->object === 'wpml_ls_menu_item') {
+                $attr_title = '';
+                $title = "&nbsp;$title&nbsp;";
+                $menu_list .= '<li class="lang_item">';
+            } else {
+                $attr_title = $menu_item->attr_title === '' ? $title : $menu_item->attr_title;
+                $menu_list .= '<li class="item">';
+            }
+            
+            $url = $menu_item->url;
+            
+            $menu_list .= '<a href="'. $url .'"'; 
+            if ($url === $actual_link) {
+                $menu_list .= ' class="selected"';
+            }
+            $menu_list .= ' title="' . $attr_title . '">' . $title . '</a>';
+            $menu_list .= '</li>';	
+	}
+    } else {
+	$menu_list .= '
+            <li class="item active">
+                <a href="#">Обо мне</a>
+            </li>
+            <li class="item">
+                <a href="#">Резюме</a>
+            </li>
+            <li class="item">
+                <a href="#">Работы</a>
+            </li>
+            <li class="item">
+                <a href="#">Блог</a>
+            </li>
+            <li class="item">
+                <a href="#">Написать письмо</a>
+            </li>
+        ';	
+    }
+    
+    echo $menu_list . '</ul>';
 }
 
 /**

@@ -64,7 +64,7 @@
                                 <a class="brand" href="#">Фролов Е.Ю.</a>
                                 <button class="class-toggler" data-item="topContent" data-class="collapsed">Menu</button>                                    
                                 <div class="content collapsed" id="topContent">
-                                    <?php render_top_menu('top-menu'); ?>
+                                    <?php render_top_menu('menu-ru'); ?>
                                 </div>
                             </nav>
                         </div>
