@@ -32,6 +32,11 @@
  * @subpackage EFrolov_Theme
  */
 
+/**
+ * Theme's root path.
+ */
+define('THEME_PATH', dirname(__FILE__));
+
 if (function_exists('add_theme_support')) {
     // Custom menus.
     add_theme_support('menus');
@@ -81,17 +86,17 @@ function section_end() {
 /**
  * Print all available posts.
  */
-function print_posts() {
+function print_posts() {	
     if (have_posts()) {
         // Start the Loop.
-	while ( have_posts() ) :
+		while ( have_posts() ) :
             the_post();
             the_title('<h1>', '</h1>');        
             the_content();
         endwhile;
         
     } else {
-        echo "111";
+        echo '<h1>' . i18l('has.no.post.title') . '</h1>';
     }
 }
 
@@ -123,31 +128,27 @@ function render_top_menu($menu_name) {
             }
             $menu_list .= ' title="' . $attr_title . '">' . $title . '</a>';
             $menu_list .= '</li>';	
-	}
-    } else {
-	$menu_list .= '
-            <li class="item active">
-                <a href="#">Обо мне</a>
-            </li>
-            <li class="item">
-                <a href="#">Резюме</a>
-            </li>
-            <li class="item">
-                <a href="#">Работы</a>
-            </li>
-            <li class="item">
-                <a href="#">Блог</a>
-            </li>
-            <li class="item">
-                <a href="#">Написать письмо</a>
-            </li>
-        ';	
+        }   
     }
     
     echo $menu_list . '</ul>';
 }
 
 /**
+ * Import PHP modules/classes.
+ * 
+ * @param string $path
+ */
+function import($path) {
+    require THEME_PATH . $path;    
+}
+
+/**
  * Theme shortcodes.
  */
-require get_template_directory() . '/inc/shortcodes.php';
+import('/inc/shortcodes.php');
+
+/**
+ * Theme internationalization.
+ */
+import('/lang/i18l.php');

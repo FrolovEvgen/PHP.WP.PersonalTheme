@@ -23,6 +23,10 @@
  * THE SOFTWARE.
  */
 
+if (!defined('THEME_PATH')) {
+    header('Refresh: 0; url=' . ($_SERVER['HTTP_HOST']));
+}
+
 /**
  * Create and register useful shortcodes.
  *
