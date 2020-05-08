@@ -49,9 +49,6 @@ header{
 }
 
 /* Initial styles for simple grid. */
-.container { 
-    width: 100%;
-}
 .container .row .cell,
 .container .row .cell-auto,
 .container .row .cell-20,
@@ -142,14 +139,65 @@ nav.navbar .menu .item a:hover {
     text-decoration: none;
 }
 
+aside {
+    padding: 10px;
+}
+
+.aside-navigation {
+	background: #f3f3f3;
+	border: 1px solid #e7e7e7;    
+}
+.aside-menu {
+	margin: 0;
+	padding: 0;
+	text-transform: uppercase;
+}
+
+.aside-menu li {
+	font-weight: 300;
+	list-style: square inside;
+	border-top: 1px solid #e7e7e7;
+	font: 14px 'Oswald', sans-serif;
+	padding: 10px;
+	font-weight: 300;    
+}
+
+.aside-menu li:first-child {
+	border: none;
+}
+
+.aside-menu li.current-menu-item,
+.aside-menu li.current-menu-item a {
+	color: #000;
+}
+
+.aside-menu a {
+	color: #8f8f8f;
+	text-decoration: none;
+}
+
+.sidebar-heading {
+	background: #000;
+	font: 14px 'Tachoma', sans-serif;
+	color: #fff;
+	padding: 10px;
+	text-transform: uppercase;
+    margin-top: 0;
+}
+.sidebar-heading .class-toggler {
+    float: right;
+    text-decoration: overline;
+}
 /* Content's initial styles */
-#content {
+.post {
+    margin: 10px 5px;
+}
+.post .content {
     border: 1px solid #ddd;
     background: #fff;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 5px;
 }    
-#content h1 { 
+.post .content h1 { 
     margin: 10px 6px;
     text-align: center;
     font-size: 200%;
@@ -157,7 +205,7 @@ nav.navbar .menu .item a:hover {
     text-transform: uppercase;
     text-align: center;
 }
-#content h2 { 
+.post .content h2 { 
     margin: 8px 4px;
     text-align: center;
     font-size: 180%;
@@ -165,21 +213,21 @@ nav.navbar .menu .item a:hover {
     text-decoration: underline;
     text-align: center;
 }
-#content h3 {
+.post .content h3 {
     margin:6px 2px;
     text-align: left;
     font-size: 150%;
     font-weight: bold;
     text-decoration: underline;
 }
-#content p {
+.post .content p {
     margin: 2px;
     font-size: 130%;
 }
-#content .table-row .td {
+.post .content .table-row .td {
     text-indent: 1pt;
 }
-#content .table-row .th {
+.post .content .table-row .th {
     font-weight: bold;
     text-align: right;
 }
@@ -201,11 +249,11 @@ body {
     margin-top: 2px;
 }
 .container {
-    width: 100%;
+    width: 96%;
     padding-right: 5px;
     padding-left: 5px;
-    margin-right: 0;
-    margin-left: 0;
+    margin-right: auto;
+    margin-left: auto;
 }
 .container .row { 
     display: block;
@@ -254,7 +302,6 @@ nav.navbar .menu .item a{
 }
 nav.navbar {
     display: block;
-    width: 98%;
 }
 nav.navbar button {
     display: inline-block;
@@ -264,6 +311,10 @@ nav.navbar .content {
     background: #000;
     border-bottom-color: transparent;
 }
+sidebar-heading .class-toggler{
+    display: block;
+}
+.aside-navigation.collapsed,
 nav.navbar .content.collapsed {
     display: none;
 }
@@ -275,7 +326,7 @@ nav.navbar .menu {
 /* Small devices (phones, 400px and up) ***************************************/ 
 @media (min-width: 400px){    
     .container {
-        width: 398px;
+        max-width: 90%;
         margin-left: auto;
         margin-right: auto;
         padding-right:10px;
@@ -351,18 +402,18 @@ nav.navbar .menu {
         flex: 0 1 78.40000%;
         max-width:78.40000%;
     }
-    #content .row{
+    .post .content .row{
         flex-flow: row nowrap;
         justify-content: space-between;
         align-items: center;
     }
-    #content h1 { 
+    .post .content h1 { 
         margin: 20px 6px;
     }
-    #content h2 { 
+    .post .content h2 { 
         margin: 15px 4px;
     }
-    #content h3 {
+    .post .content h3 {
         margin: 10px 2px;    
     }
     #top {
@@ -384,7 +435,7 @@ nav.navbar .menu {
     }
     nav.navbar button {
         display: none!important;
-    }
+    }    
     nav.navbar .content.collapsed {
         display: inline-block;
         border-bottom-color: transparent;
@@ -395,6 +446,12 @@ nav.navbar .menu {
     }
     nav.navbar .menu .lang_item .wpml-ls-native{
         display: none;
+    }
+    .sidebar-heading .class-toggler{
+        display: none!important;
+    }
+    .aside-navigation.collapsed {
+        display: block;
     }
     footer p {
         text-align: left

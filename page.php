@@ -31,11 +31,9 @@
  * @package WordPress
  * @subpackage EFrolov_Theme
  */
-?>
-<?php get_header(); ?>
-<section>
-    <div id="content" class="container">
-    <?php the_content(); ?>        
-    </div>
-</section>
-<?php get_footer(); ?>
+
+get_header();
+section_start("container");
+the_content();
+section_end();
+get_footer(); 

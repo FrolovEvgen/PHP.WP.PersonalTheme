@@ -31,9 +31,13 @@
  * @package WordPress
  * @subpackage EFrolov_Theme
  */
-
 get_header();
-section_start("container");
-the_content();
-section_end();
+?>
+<div class="container">
+    <div class="row">
+        <div class="cell-25-md"><?php get_sidebar(); ?></div>
+        <div class="cell-75-md"><?php print_posts(); ?></div>                    
+    </div>
+</div>
+<?php 
 get_footer();

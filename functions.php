@@ -71,9 +71,13 @@ function get_resource ($path) {
 
 /**
  * Start html content's container.
+ * @param string $class (optional) Additional class for container.
  */
-function section_start() {
-    echo '<section><div id="content" class="container">';
+function section_start($class = "") {
+    if ($class !== "") {
+        $class = " $class";
+    }
+    echo '<section class="post"><div class="content' . $class . '">';
 }
 
 /**
@@ -91,12 +95,17 @@ function print_posts() {
         // Start the Loop.
 		while ( have_posts() ) :
             the_post();
+            section_start("");
             the_title('<h1>', '</h1>');        
             the_content();
+            section_end();
         endwhile;
         
     } else {
+        section_start("fluid");
         echo '<h1>' . i18l('has.no.post.title') . '</h1>';
+        echo '<p>' . i18l('has.no.post.info') . '</p>';
+        the_content();
     }
 }
 

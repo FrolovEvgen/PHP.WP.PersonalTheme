@@ -1,4 +1,5 @@
 <?php
+
 /* 
  * The MIT License
  *
@@ -24,16 +25,21 @@
  */
 
 /**
- * The template for displaying all single posts
+ * The sidebar containing the main widget area
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
  *
  * @package WordPress
  * @subpackage EFrolov_Theme
  */
-
-get_header();
-section_start("container");
-the_content();
-section_end();
-get_footer();
+?>
+<aside>
+    <h2 class="sidebar-heading"><?=i18l("aside.cat.title")?><span 
+            class="class-toggler" 
+            data-item="asideMenu" 
+            data-class="collapsed"><?=single_cat_title("", false)?></span></h2>
+	<nav id="asideMenu" class="aside-navigation collapsed">
+		<? wp_nav_menu(array('menu' => 'aside-menu', 'menu_class' => 'aside-menu')); ?>
+	</nav>	
+</aside>

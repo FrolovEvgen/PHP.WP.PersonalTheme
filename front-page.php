@@ -33,7 +33,7 @@
  */
 
 get_header();
-section_start();
-print_posts();
+section_start("container");
+the_content();
 section_end();
 get_footer();

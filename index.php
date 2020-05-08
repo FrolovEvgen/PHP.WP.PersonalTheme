@@ -34,6 +34,6 @@
 
 get_header();
 section_start();
-print_posts();
+the_content();
 section_end();
 get_footer(); 
