@@ -231,6 +231,38 @@ aside {
     font-weight: bold;
     text-align: right;
 }
+/* Category list styles */
+.img.preview {
+    width: 150px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.img {
+    border: #ddd 1px solid;
+    padding: 10px;
+    background: inherit;
+    text-align: center;
+    vertical-align: middle;
+    text-indent: 0;
+}
+.img:hover {
+    border-color:#999;
+    background:#ddd;
+}
+.img img {
+    border:#ccc 1px solid;
+    margin-left: auto;
+    margin-right: auto;
+}
+p.description {
+    margin-bottom: 10px!important;
+}
+p.tags, 
+p.category {
+    font-size: 90%!important;
+    color: #999;
+}
 
 footer p { 
     font-size: 110%;
@@ -405,7 +437,7 @@ nav.navbar .menu {
     .post .content .row{
         flex-flow: row nowrap;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
     }
     .post .content h1 { 
         margin: 20px 6px;

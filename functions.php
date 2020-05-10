@@ -43,7 +43,6 @@ if (function_exists('add_theme_support')) {
 
     //Add thumbnails support for all contents.
     add_theme_support( 'post-thumbnails' ); 
-
 }
 
 // Register themes style sheets.
@@ -71,13 +70,15 @@ function get_resource ($path) {
 
 /**
  * Start html content's container.
- * @param string $class (optional) Additional class for container.
  */
-function section_start($class = "") {
-    if ($class !== "") {
+function section_start($id = "", $class="") {
+    if ("" !== $id) {
+        $id = " id=\"item-$id\"";
+    }
+    if ("" !== $class) {
         $class = " $class";
     }
-    echo '<section class="post"><div class="content' . $class . '">';
+    echo '<section' . $id . ' class="post"><div class="content' . $class . '">';
 }
 
 /**
@@ -95,17 +96,61 @@ function print_posts() {
         // Start the Loop.
 		while ( have_posts() ) :
             the_post();
-            section_start("");
-            the_title('<h1>', '</h1>');        
-            the_content();
+            section_start(get_the_ID());
+            
+            // Create category lists;
+            $links = array_map( function ( $category ) {
+                return sprintf(
+                    '<a href="%s" class="link link_text">%s</a>', // Шаблон вывода ссылки
+                    esc_url( get_category_link( $category ) ), // Ссылка на рубрику
+                    esc_html( $category->name ) // Название рубрики
+                );
+            }, get_the_category() );        
+            
+    ?>
+<div class="container">
+    <div class="row">
+        <div class="cell"><h2><?php the_title() ?></h2></div>                            
+    </div>
+    <div class="row">
+        <div class="cell-25">
+            <div class="img preview"><?php the_post_thumbnail('thumbnail') ?></div>
+        </div>
+        <div class="cell-75">
+            <p class="description"><?=get_the_excerpt() ?></p>
+            <p class="readmore"><a
+                    href="<?php the_permalink(); ?>" 
+                    title="<?php the_title_attribute( 
+                            array('before' => 'Permalink to: ', 'after' => '')); 
+                    ?>"><?=i18l('read.more.title') ?></a></p>
+            <hr>
+            <p class="category"><?=i18l('categories.title') ?>: <?=implode( ', ', $links ); ?></p>
+            <p class="tags"><?=i18l('tags.title') ?>: <?=get_the_tags(); ?></p>
+        <div>
+    </div>                            
+</div>
+       
+	<?php
             section_end();
         endwhile;
         
     } else {
-        section_start("fluid");
-        echo '<h1>' . i18l('has.no.post.title') . '</h1>';
-        echo '<p>' . i18l('has.no.post.info') . '</p>';
-        the_content();
+        section_start("no-posts");
+        ?>
+<div class="container">
+    <div class="row">
+        <div class="cell">
+            <h1><?=i18l('has.no.post.title') ?></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="cell">
+            <p><?=i18l('has.no.post.info') ?></p>
+        </div>
+    </div>
+</div>
+        <?php
+        section_end();
     }
 }
 
