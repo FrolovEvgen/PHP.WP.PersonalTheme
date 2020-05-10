@@ -39,10 +39,10 @@
             <div class="container">
                 <div class="row">
                     <div class="cell-50">
-                        <p>&nbsp;<?php echo date('Y') ?>&nbsp;©&nbsp;Фролов Е.Ю.</p>
+                        <p>&nbsp;<?php echo date('Y') ?>&nbsp;©&nbsp;<?=i18l('author.title') ?></p>
                     </div>
                     <div class="cell-50">
-                        <p>e-mail:&nbsp;frolov[AT]amiriset.com</p>
+                        <p>e-mail:&nbsp;<?=i18l('author.email') ?></p>
                     </div>
                 </div>                
             </div>

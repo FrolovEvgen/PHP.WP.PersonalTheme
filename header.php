@@ -61,8 +61,8 @@
                         </div>
                         <div class="cell-auto">
                             <nav class="navbar">
-                                <a class="brand" href="#">Фролов Е.Ю.</a>
-                                <button class="class-toggler" data-item="topContent" data-class="collapsed">Menu</button>                                    
+                                <a class="brand" href="<?= site_url() ?>"><?=i18l('author.title') ?></a>
+                                <button class="class-toggler" data-item="topContent" data-class="collapsed"><?=i18l('menu.title') ?></button>                                    
                                 <div class="content collapsed" id="topContent">
                                     <?php render_top_menu('menu-ru'); ?>
                                 </div>
