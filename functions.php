@@ -205,4 +205,4 @@ import('/inc/shortcodes.php');
 /**
  * Theme internationalization.
  */
-import('/lang/i18l.php');
+import('/inc/i18l.php');
