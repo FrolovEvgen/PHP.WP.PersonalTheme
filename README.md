@@ -12,15 +12,37 @@ Requires PHP: **5.6**
 
 ## Template Hierarchy.
 
-* `footer.php` - The generator for the site’s footer.
-* `front-page.php` - The template file is used to render site’s front page.
-* `functions.php` - The theme's functions.
-* `header.php` - The generator for the site’s header.
+### Root files.
+
+* `classes/` - Included classes.
+* `css/` - Style sheets for theme.
+* `i/` - Static images.
+* `inc/` - Included modules.
+* `js/` - Javascripts.
+* `lang/` - Translations.
+* `category.php` - The template for displaying all single posts.
+* `footer.php` - The template for displaying the footer.
+* `front-page.php` - The template for displaying main page.
+* `functions.php` - Theme's functions and definitions.
+* `header.php` - The header for our theme.
 * `index.php` - The main template file. 
-* `page.php` - The template file used to render a static page (page post-type). 
+* `page.php` - The template for displaying all single pages (page post-type). 
 * `screenshot.jpg` - The theme's preview.
-* `single.php` - The single post template file is used to render a single post.
+* `sidebar.php` - The sidebar containing the main widget area.
+* `single.php` - The template for displaying all single posts.
 * `style.css` - The main stylesheet contains the information header for this theme.
+
+### Included classes.
+
+* `AbstractEntity.php` - Class `AbstractEntity` is base class for complex objects.
+* `AbstractParamEntity.php` - Class `AbstractParamEntity` is abstract class with parameters.
+* `Properties.php` - Class `Properties` is single key/value list.
+* `Settings.php` - Class `Settings` is used to control the basic settings of a component loaded from a `*.ini` file or specified by local settings.
+
+### Included modules.
+
+* `i18l.php` -  The theme's localization functions.
+* `shortcodes.php` - The theme's useful shortcodes.
 
 ## Widgets.
 
@@ -31,6 +53,8 @@ None.
 None.
 
 ## Shortcodes.
+
+* `image` - Shows image with specific tag.
 
 ## Link.
 
