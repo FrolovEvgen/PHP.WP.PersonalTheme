@@ -55,6 +55,7 @@ header{
 .container .row .cell-25,
 .container .row .cell-33,
 .container .row .cell-50,
+.container .row .cell-66,
 .container .row .cell-75,
 .container .row .cell-80 {
     display: block;
@@ -232,12 +233,6 @@ aside {
     text-align: right;
 }
 /* Category list styles */
-.img.preview {
-    width: 150px;
-    height: 150px;
-    margin-left: auto;
-    margin-right: auto;
-}
 .img {
     border: #ddd 1px solid;
     padding: 10px;
@@ -250,10 +245,19 @@ aside {
     border-color:#999;
     background:#ddd;
 }
-.img img {
-    border:#ccc 1px solid;
+.img.preview {    
+    height: auto;
+    max-width: 200px; 
     margin-left: auto;
     margin-right: auto;
+}
+.img img {
+    border:#ccc 1px solid;    
+    margin-left: auto;
+    margin-right: auto;
+}
+.img.preview img {
+    width: 100%;
 }
 p.description {
     margin-bottom: 10px!important;
@@ -298,6 +302,7 @@ body {
 .container .row .cell-25,
 .container .row .cell-33,
 .container .row .cell-50,
+.container .row .cell-66,
 .container .row .cell-75,
 .container .row .cell-80 {
     max-width: 100%
@@ -322,6 +327,7 @@ body {
 .container .row .cell-25,
 .container .row .cell-33,
 .container .row .cell-50,
+.container .row .cell-66,
 .container .row .cell-75,
 .container .row .cell-80 {
     padding-right: 5px;
@@ -379,6 +385,7 @@ nav.navbar .menu {
     .container .row .cell-33,
     .container .row .cell-50,
     .container .row .cell-75,
+    .container .row .cell-66,
     .container .row .cell-80 {
         padding-right: 10px;
         padding-left: 10px;
@@ -429,6 +436,10 @@ nav.navbar .menu {
     .container .row .cell-75 {
         flex: 0 1 73.50000%;
         max-width:73.50000%;
+    }
+    .container .row .cell-33 {
+        flex: 0 1 65.33334%;
+        max-width: 65.33334%;
     }
     .container .row .cell-80 {
         flex: 0 1 78.40000%;
@@ -512,6 +523,7 @@ nav.navbar .menu {
     .container .row .cell-25,
     .container .row .cell-33,
     .container .row .cell-50,
+    .container .row .cell-66,
     .container .row .cell-75,
     .container .row .cell-80 {
         padding-right: 15px;
