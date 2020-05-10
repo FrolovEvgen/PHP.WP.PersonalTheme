@@ -33,6 +33,7 @@
  */
 
 get_header();
+the_breadcrumb();
 section_start("single", "container");
 the_content(); 
 section_end();

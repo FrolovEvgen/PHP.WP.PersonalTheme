@@ -48,7 +48,7 @@ if (function_exists('add_theme_support')) {
 // Register themes style sheets.
 add_action('wp_enqueue_scripts', 'register_theme_styles');
 function register_theme_styles () {
-    wp_register_style('main_css', get_resource('/css/style.min.css'));
+    wp_register_style('main_css', get_resource('/css/style.css'));
     wp_enqueue_style('main_css');
 }
 
@@ -101,9 +101,9 @@ function print_posts() {
             // Create category lists;
             $links = array_map( function ( $category ) {
                 return sprintf(
-                    '<a href="%s" class="link link_text">%s</a>', // Шаблон вывода ссылки
-                    esc_url( get_category_link( $category ) ), // Ссылка на рубрику
-                    esc_html( $category->name ) // Название рубрики
+                    '<a href="%s" class="link link_text">%s</a>', // Template link
+                    esc_url( get_category_link( $category ) ), // Category link
+                    esc_html( $category->name ) // Category name
                 );
             }, get_the_category() );        
             
@@ -114,9 +114,9 @@ function print_posts() {
     </div>
     <div class="row">
         <div class="cell-25">
-            <div class="img preview"><?php the_post_thumbnail('thumbnail') ?></div>
+            <?php the_post_image() ?>
         </div>
-        <div class="cell-75">
+        <div class="cell-auto">
             <p class="description"><?=get_the_excerpt() ?></p>
             <p class="readmore"><a
                     href="<?php the_permalink(); ?>" 
@@ -124,7 +124,8 @@ function print_posts() {
                             array('before' => 'Permalink to: ', 'after' => '')); 
                     ?>"><?=i18l('read.more.title') ?></a></p>
             <hr>
-            <p class="category"><?=i18l('categories.title') ?>: <?=implode( ', ', $links ); ?></p>
+            <p class="category"><?=i18l('categories.title') 
+                    ?>: <?=implode( ', ', $links ); ?></p>
             <p class="tags"><?=i18l('tags.title') ?>: <?=get_the_tags(); ?></p>
         <div>
     </div>                            
@@ -186,6 +187,51 @@ function render_top_menu($menu_name) {
     }
     
     echo $menu_list . '</ul>';
+}
+
+/**
+ * Create fluid preview from thumbnail.
+ * @param boolean $fLink (optional) create link to post.
+ */
+function the_post_image($fLink = false) {
+    $html = get_the_post_thumbnail();
+    $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
+    if ($fLink) {
+        $html = '<a  href="' . get_the_permalink() . 
+                '" title="' . get_the_title() . 
+                '">' . $html . '</a>';
+        
+    }
+    $html = '<div class="img preview">' . $html . '</div>';
+    echo $html; 
+}
+
+/**
+ * Creates "bread crumbs" for posts.
+ */
+function the_breadcrumb(){
+    echo '<div class="container"><div class="row"><div class="cell">'; 
+	// Get current page number.
+	$pageNum = ( get_query_var('paged') ) ? get_query_var('paged') : 1; 
+	$separator = ' &raquo; '; //  » 
+	// If main page.
+	if( is_front_page() ){ 
+		if( $pageNum > 1 ) {
+			echo '<a href="' . site_url() . '">' . i18l('page.main.title') . 
+                    '</a>' . $separator . $pageNum . i18l('page.iterator');
+		} else {
+			echo i18l('page.position');
+		} 
+	} else {  
+		echo '<a href="' . site_url() . '">' . i18l('page.main.title') . 
+                '</a>' . $separator;
+		if( is_single() ){ // post  
+			the_category(', '); echo $separator; the_title(); 
+		}  elseif ( is_404() ) { // If page not found.
+			echo i18l('page.404.title'); 
+		}
+	}
+    echo '</div></div></div>';
 }
 
 /**
