@@ -28,7 +28,7 @@ if (!defined('THEME_PATH')) {
 }
 
 /**
- * Create and register useful shortcodes.
+ * The theme's useful shortcodes.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *

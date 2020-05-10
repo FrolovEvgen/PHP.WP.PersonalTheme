@@ -29,7 +29,7 @@ if (!defined('THEME_PATH')) {
 }
 
 /**
- * Theme's localization functions.
+ * The theme's localization functions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *

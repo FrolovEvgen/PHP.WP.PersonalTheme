@@ -24,7 +24,7 @@
  */
 
 /**
- * Theme's functions and definitions
+ * Theme's functions and definitions.
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
