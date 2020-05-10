@@ -44,14 +44,14 @@ if (!defined('THEME_PATH')) {
  * $attr["width"] - (optional) Image width.
  * $attr["height"] - (optional) Image height.
  * 
- * @example [image name="test.jpg" title="Test image"] 
- * @example [image name="test.jpg" alt="This is test"] 
- * @example [image name="test.jpg" width="100" height="100"] 
+ * @example [static_image name="test.jpg" title="Test image"] 
+ * @example [static_image name="test.jpg" alt="This is test"] 
+ * @example [static_image name="test.jpg" width="100" height="100"] 
  * 
- * @param array $attr Image attributes: *              
+ * @param array $attr Image attributes             
  * @return string
  */
-function show_image($attr) {
+function static_image($attr) {
 	$params = shortcode_atts( array( 
 		'name' => '',
 		'title'=> '',
@@ -84,10 +84,65 @@ function show_image($attr) {
 }
 
 /**
+ * Create post list as thumbnails gallery.
+ * $attr["name"] - Image filename.
+ * $attr["title"] - (optional) Image title.
+ * 
+ * @param array $attr Shortcode's attributes.
+ * @return string Html.
+ */
+function post_images($attr) {
+    $params = shortcode_atts( array( 
+        'name' => '',
+        'id' => '',
+        'count'=> '4'
+    ), $attr );
+        
+    $html = '';
+    $category_ID = null;
+    
+    // Collect category ID
+    if ($params['name'] !== '') {
+        $category_ID = get_cat_ID($params['name']);
+    } elseif( $params['id'] !== '') {
+        $category_ID = (int) $params['id'];
+    }
+    
+    // If Category ID exists;
+    if ($category_ID !== null) {
+        $lang_category_ID = apply_filters('wpml_object_id', $category_ID, 'category', TRUE);
+        $category = get_category($lang_category_ID);
+        // Create header.
+        $html .= '<div class="row"><div class="cell">';
+        $html .= '<h3>' . $category->name . '</h3>';
+        $html .= '</div></div>';    
+        // Create images.
+        $posts = new WP_Query('cat=' . $lang_category_ID . '&posts_per_page=' . $params['count']);
+        $cnt = 0;
+        while($posts->have_posts()) : $posts->the_post();
+            if ($cnt++ % 4 == 0) {
+                $html .= '<div class="row">';
+            }
+            $html .= '<div class="cell-25">'. get_the_post_image(true) . '</div>';
+            if ($cnt % 4 == 0) {
+                $html .= '</div>';
+            } 
+        endwhile;
+        // If row doesn't close.
+        if (!endsWith($html, '</div></div>')) {
+            $html .= '</div>';    
+        }        
+    }
+    
+    return $html;
+}
+
+/**
  * Register all shortcodes.
  */
 function register_shortcodes(){
-   add_shortcode('image', 'show_image');
+   add_shortcode('static_image', 'static_image');
+   add_shortcode('post_images', 'post_images');
 }
 
 // Add registration to WordPress’ initialization action.

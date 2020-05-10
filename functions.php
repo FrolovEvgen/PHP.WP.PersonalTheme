@@ -193,7 +193,7 @@ function render_top_menu($menu_name) {
  * Create fluid preview from thumbnail.
  * @param boolean $fLink (optional) create link to post.
  */
-function the_post_image($fLink = false) {
+function get_the_post_image($fLink = false) {
     $html = get_the_post_thumbnail();
     $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
     if ($fLink) {
@@ -202,8 +202,15 @@ function the_post_image($fLink = false) {
                 '">' . $html . '</a>';
         
     }
-    $html = '<div class="img preview">' . $html . '</div>';
-    echo $html; 
+    return '<div class="img preview">' . $html . '</div>';     
+}
+
+/**
+ * Print fluid preview from thumbnail.
+ * @param boolean $fLink (optional) create link to post.
+ */
+function the_post_image($fLink = false) {
+    echo get_the_post_image($fLink); 
 }
 
 /**
@@ -233,6 +240,24 @@ function the_breadcrumb(){
 	}
     echo '</div></div></div>';
 }
+
+/**
+ * Function to check the string is ends with given substring or not.
+ * 
+ * @param string $string This parameter holds the text which need to test.
+ * @param string $endString The text to search at the end of given String. If is 
+ *                      an empty string, it returns true.
+ * 
+ * @return boolean This function returns True on success or False on failure.
+ */
+function endsWith($string, $endString) 
+{ 
+    $len = strlen($endString); 
+    if ($len == 0) { 
+        return true; 
+    } 
+    return (substr($string, -$len) === $endString); 
+} 
 
 /**
  * Import PHP modules/classes.
