@@ -219,13 +219,13 @@ function the_post_image($fLink = false) {
 function the_breadcrumb(){
     echo '<div class="container"><div class="row"><div class="cell">'; 
 	// Get current page number.
-	$pageNum = ( get_query_var('paged') ) ? get_query_var('paged') : 1; 
+	$page_num = ( get_query_var('paged') ) ? get_query_var('paged') : 1; 
 	$separator = ' &raquo; '; //  » 
 	// If main page.
 	if( is_front_page() ){ 
-		if( $pageNum > 1 ) {
+		if( $page_num > 1 ) {
 			echo '<a href="' . site_url() . '">' . i18l('page.main.title') . 
-                    '</a>' . $separator . $pageNum . i18l('page.iterator');
+                    '</a>' . $separator . $page_num . i18l('page.iterator');
 		} else {
 			echo i18l('page.position');
 		} 
