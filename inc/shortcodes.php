@@ -84,9 +84,14 @@ function static_image($attr) {
 }
 
 /**
- * Create post list as thumbnails gallery.
- * $attr["name"] - Image filename.
- * $attr["title"] - (optional) Image title.
+ * Creates post's list as image gallery.
+ * $attr["name"] - The name of category.
+ * $attr["id"] - The id of category.
+ * $attr["count"] - (optional) Count of last posts for selecting.
+ * 
+ * @example [post_images name="Favorites"]
+ * @example [post_images id="5"]
+ * @example [static_image id="5" count="8"]
  * 
  * @param array $attr Shortcode's attributes.
  * @return string Html.
