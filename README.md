@@ -54,7 +54,43 @@ None.
 
 ## Shortcodes.
 
-* `image` - Shows image with specific tag.
+* `static_image` - Shows image with specific tag.
+* `post_images` - Creates post's list as image gallery.
+
+### [static_image]
+
+Loads static image from `/i/` folder and show it.
+
+#### Attributes
+
+* `name` - Image filename.
+* `title` - (optional) Image title.
+* `alt` - (optional) Alternative description.
+* `width` - (optional) Image width.
+* `height` - (optional) Image height.
+
+#### Examples
+
+* `[static_image name="test.jpg" title="Test image"]`
+* `[static_image name="test.jpg" alt="This is test"]`
+* `[static_image name="test.jpg" width="100" height="100"]` 
+
+### [post_images]
+
+Loads last thumbnails from post in specified category. All thimbnails shows with 
+link to related post.
+
+#### Attributes
+
+* `name` - The name of category.
+* `id` - The id of category.
+* `count` - (optional) Count of last posts for selecting. [default = 4]
+
+#### Examples
+
+* `[post_images name="Favorites"]`
+* `[post_images id="5"]`
+* `[static_image id="5" count="8"]` 
 
 ## Link.
 
