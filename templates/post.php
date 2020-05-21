@@ -1,8 +1,9 @@
 <?php
+
 /* 
  * The MIT License
  *
- * Copyright 2020 E.Frolov <frolov@amiriset.com>
+ * Copyright 2020 evGen.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,44 +23,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-/**
- * The main template file.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package WordPress
- * @subpackage EFrolov_Theme
- */
-
-// Get pages count.
-$posts_per_page = get_option( 'posts_per_page', 8 ); 
-// Save old query.
-$temp = $wp_query;
-get_header();
 ?>
 <div class="container">
     <div class="row">
-        <div class="cell-25-md"><?php get_sidebar(); ?></div>
-        <div class="cell-75-md">
-            <?php print_posts(5) ?>
-        </div>                    
+        <div class="cell"><h2><?php the_title() ?></h2></div>                            
     </div>
     <div class="row">
-        <div class="cell-25-md"></div>
-        <div class="cell-75-md">
-            <div class="container">
-                <br><hr><br>
-                <div class="row">
-                    <div class="cell"><?php print_page_navigation($posts_per_page) ?></div>
-                </div>
-            </div>    
+        <div class="cell-25">
+            <?php the_post_image() ?>
         </div>
-    </div>
+        <div class="cell-auto">
+            <p class="description"><?=get_the_excerpt() ?></p>
+            <p class="readmore"><a
+                    href="<?php the_permalink(); ?>" 
+                    title="<?php the_title_attribute(array(
+                        'before' => 'Permalink to: ', 
+                        'after' => ''
+                        )); ?>"><?=i18l('read.more.title') ?></a></p>
+            <hr>
+            <p class="category"><?=i18l('categories.title') ?>: <?=$params['links'] ?></p>
+            <p class="tags"><?=i18l('tags.title') ?>: <?php the_tags(); ?></p>
+        <div>
+    </div>                            
 </div>
-
-<?php 
-get_footer();
-// Restore query.
-$wp_query = null;
-$wp_query = $temp;
+       

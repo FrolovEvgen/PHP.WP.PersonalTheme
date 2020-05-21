@@ -1,8 +1,9 @@
 <?php
+
 /* 
  * The MIT License
  *
- * Copyright 2020 E.Frolov <frolov@amiriset.com>.
+ * Copyright 2020 evGen.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,41 +25,21 @@
  */
 
 /**
- * The template for displaying all single posts.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
+ * HTML block for display empty post.
  *
  * @package WordPress
  * @subpackage EFrolov_Theme
- */ 
-// Get pages count.
-$posts_per_page = get_option( 'posts_per_page', 8 ); 
-// Save old query.
-$temp = $wp_query;
-get_header();
+ */
 ?>
 <div class="container">
     <div class="row">
-        <div class="cell-25-md"><?php get_sidebar(); ?></div>
-        <div class="cell-75-md">
-            <?php print_posts(5) ?>
-        </div>                    
+        <div class="cell">
+            <h1><?=i18l('has.no.post.title') ?></h1>
+        </div>
     </div>
     <div class="row">
-        <div class="cell-25-md"></div>
-        <div class="cell-75-md">
-            <div class="container">
-                <br><hr><br>
-                <div class="row">                    
-                    <div class="cell"><?php print_page_navigation($posts_per_page) ?></div>
-                </div>
-            </div>    
+        <div class="cell">
+            <p><?=i18l('has.no.post.info') ?></p>
         </div>
     </div>
 </div>
-
-<?php 
-get_footer();
-// Restore query.
-$wp_query = null;
-$wp_query = $temp;

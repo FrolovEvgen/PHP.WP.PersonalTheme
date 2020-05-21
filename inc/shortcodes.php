@@ -134,7 +134,7 @@ function post_images($attr) {
             } 
         endwhile;
         // If row doesn't close.
-        if (!endsWith($html, '</div></div>')) {
+        if (!ends_with($html, '</div></div>')) {
             $html .= '</div>';    
         }        
     }

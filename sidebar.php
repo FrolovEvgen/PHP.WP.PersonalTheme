@@ -41,5 +41,17 @@
             data-class="collapsed"><?=single_cat_title("", false)?></span></h2>
 	<nav id="asideMenu" class="aside-navigation collapsed">
 		<? wp_nav_menu(array('menu' => 'aside-menu', 'menu_class' => 'aside-menu')); ?>
-	</nav>	
+	</nav>
+    <br>
+    <div class="tagcloud"><?php
+    wp_tag_cloud( array(
+        'smallest' => 100, // size of least used tag
+        'largest'  => 150, // size of most used tag
+        'unit'     => '%', // unit for sizing the tags
+        'number'   => 45, // displays at most 45 tags
+        'orderby'  => 'name', // order tags alphabetically
+        'order'    => 'ASC', // order tags by ascending order
+        'taxonomy' => 'post_tag' // you can even make tags for custom taxonomies
+     ) ); ?></div>
+
 </aside>

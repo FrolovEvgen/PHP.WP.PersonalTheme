@@ -37,4 +37,5 @@ the_breadcrumb();
 section_start("single", "container");
 the_content(); 
 section_end();
+print_post_navigation();
 get_footer();
