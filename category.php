@@ -41,7 +41,7 @@ get_header();
     <div class="row">
         <div class="cell-25-md"><?php get_sidebar(); ?></div>
         <div class="cell-75-md">
-            <?php print_posts(5) ?>
+            <?php print_posts($posts_per_page) ?>
         </div>                    
     </div>
     <div class="row">
