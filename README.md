@@ -1,4 +1,5 @@
 # PHP.WP.PersonalTheme.
+[ **En** | [**Ru**](/README.RU.md) ]
 
 ## Description.
 
