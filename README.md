@@ -20,6 +20,7 @@ Requires PHP: **5.6**
 * `inc/` - Included modules.
 * `js/` - Javascripts.
 * `lang/` - Translations.
+* `templates/` - Included templates.
 * `category.php` - The template for displaying all single posts.
 * `footer.php` - The template for displaying the footer.
 * `front-page.php` - The template for displaying main page.
@@ -43,6 +44,10 @@ Requires PHP: **5.6**
 
 * `i18l.php` -  The theme's localization functions.
 * `shortcodes.php` - The theme's useful shortcodes.
+
+### Included templates.
+* `empty_posts.php` -  The theme's template for empty post.
+* `posts.php` - The theme's useful shortcodes.
 
 ## Widgets.
 
