@@ -5,6 +5,8 @@
 
 WordPress theme for my personal site. 
 
+![Screen1](/screenshot.jpg)
+
 ## Requirements.
 
 Requires WordPress: >= **5.4**

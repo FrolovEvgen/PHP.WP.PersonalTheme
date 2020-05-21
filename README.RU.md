@@ -5,6 +5,8 @@
 
 WordPress тема для персонального сайта. 
 
+![Screen1](/screenshot.jpg)
+
 ## Требования.
 
 WordPress: >= **5.4**
