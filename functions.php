@@ -47,7 +47,7 @@ if (function_exists('add_theme_support')) {
 // Register themes style sheets.
 add_action('wp_enqueue_scripts', 'register_theme_styles');
 function register_theme_styles () {
-    wp_register_style('main_css', get_resource('/css/style.css'));
+    wp_register_style('main_css', get_resource('/css/style.min.css'));
     wp_enqueue_style('main_css');
 }
 
