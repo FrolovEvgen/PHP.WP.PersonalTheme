@@ -23,6 +23,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+/**
+ * The theme's template for display post preview.
+ *
+ * @package WordPress
+ * @subpackage EFrolov_Theme
+ */
 ?>
 <div class="container">
     <div class="row">
@@ -30,7 +37,7 @@
     </div>
     <div class="row">
         <div class="cell-25">
-            <?php the_post_image() ?>
+            <?php print_post_image() ?>
         </div>
         <div class="cell-auto">
             <p class="description"><?=get_the_excerpt() ?></p>

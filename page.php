@@ -33,7 +33,7 @@
  */
 
 get_header();
-section_start("page", "container");
+print_section_start("page", "container");
 the_content();
-section_end();
+print_section_end();
 get_footer(); 

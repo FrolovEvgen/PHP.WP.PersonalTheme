@@ -64,7 +64,7 @@
                                 <a class="brand" href="<?= site_url() ?>"><?=i18l('author.title') ?></a>
                                 <button class="class-toggler" data-item="topContent" data-class="collapsed"><?=i18l('menu.title') ?></button>                                    
                                 <div class="content collapsed" id="topContent">
-                                    <?php render_top_menu('menu-ru'); ?>
+                                    <?php print_top_menu('menu-ru'); ?>
                                 </div>
                             </nav>
                         </div>

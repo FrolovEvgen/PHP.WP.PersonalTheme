@@ -71,9 +71,8 @@ function get_resource ($path) {
  * Start html content's container.
  * @param string $id (optional) Add item id to the Section.
  * @param string $class (optional) Additional class for Content container.
- * @TODO Rename to 'print_section_start'.
  */
-function section_start($id = "", $class="") {
+function print_section_start($id = "", $class="") {
     if ("" !== $id) {
         $id = " id=\"item-$id\"";
     }
@@ -85,9 +84,8 @@ function section_start($id = "", $class="") {
 
 /**
  * Finish html content's container.
- * @TODO Rename to 'print_section_end'.
  */
-function section_end() { 
+function print_section_end() { 
     echo '</div></section>';
 }
 
@@ -127,7 +125,7 @@ function print_posts($posts_per_page = 10) {
     if ($wp_query->have_posts()) {
         // Start the Loop.
 		while ($wp_query->have_posts()) : $wp_query->the_post();
-            section_start(get_the_ID());
+            print_section_start(get_the_ID());
             
             // Create category lists;
             $links = array_map( function ( $category ) {
@@ -138,13 +136,13 @@ function print_posts($posts_per_page = 10) {
                 );
             }, get_the_category() );
             include_template("post", array('links' => implode( ', ', $links )));
-            section_end();
+            print_section_end();
         endwhile;
         
     } else {
-        section_start("no-posts");
+        print_section_start("no-posts");
         include_template("empty_post");
-        section_end();
+        print_section_end();
     }
 }
 
@@ -159,9 +157,8 @@ function get_current_page() {
 /**
  * Render top menu by saved WP menu configuration.
  * @param string $menu_name Menu configuration name.
- * @TODO Rename to 'print_rop_menu';
  */
-function render_top_menu($menu_name) {
+function print_top_menu($menu_name) {
     
     $menu_list = '<ul class="menu">';
     if ($menu_items = wp_get_nav_menu_items($menu_name)) {
@@ -210,17 +207,15 @@ function get_the_post_image($fLink = false) {
 /**
  * Print fluid preview from thumbnail.
  * @param boolean $fLink (optional) create link to post.
- * @TODO Rename to 'print_post_image'
  */
-function the_post_image($fLink = false) {
+function print_post_image($fLink = false) {
     echo get_the_post_image($fLink); 
 }
 
 /**
  * Creates "bread crumbs" for posts. 
- * @TODO Rename to 'print_breadcrumb'
  */
-function the_breadcrumb(){
+function print_breadcrumb(){
     echo '<div class="container"><div class="row"><div class="cell">'; 
     // Get current page number.
     $page_num = get_current_page(); 

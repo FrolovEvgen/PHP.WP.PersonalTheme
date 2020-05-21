@@ -25,7 +25,7 @@
  */
 
 /**
- * HTML block for display empty post.
+ * The theme's template for display empty post.
  *
  * @package WordPress
  * @subpackage EFrolov_Theme
