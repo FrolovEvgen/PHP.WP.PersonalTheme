@@ -143,11 +143,64 @@ function post_images($attr) {
 }
 
 /**
+ * Creates download link with icon.
+ * $attr['file'] - Filename located in '/download/' static folder.
+ * $attr['link'] - Link to internal or external resource.
+ * $attr['title'] - (optional) Title for link.
+ * 
+ * @param array $attr Attributes.
+ * @return string Html.
+ */
+function download_link($attr) {
+    $params = shortcode_atts( array( 
+        'file' => '',
+        'link' => '',
+        'title' => i18l('download.link.title')
+    ), $attr );
+    
+    if ($params['file'] !== '') {
+        $filename = $params['file'];        
+        $icom_img = get_icon($filename);       
+        $source = get_resource('/download/' . $filename);        
+    } else if ($params['link'] !== '') {
+        $source = $params['link'];
+        $icom_img = get_icon($source);            
+    } else {    
+        return '<p style="color:red">'. i18l('download.error'). '</p>';    
+    }
+    $title = $params['title'];
+    return '<p class="download"><span>'. i18l('download.title'). '&nbsp;:&nbsp;</span>' . 
+           '<a href="' .  $source . '" target="_blank" title="' . $title . '">' . 
+            $icom_img . '</a></p>';;
+}
+
+/**
+ * Get icon by file extension.
+ * If icon not found it creates empty icon.
+ * 
+ * @param string $path Path or link to file.
+ * @return string Img tag with icon.
+ */
+function get_icon($path) {
+    $array = explode('.', $path);
+    $extension = end($array);        
+    $icon_image = THEME_PATH . '\\i\\' . $extension . '.png';
+        
+    if (!file_exists ($icon_image)) {
+        $icon = 'empty.png';
+    } else {
+        $icon = $extension . '.png';
+    }
+    return static_image(array('name' => $icon, 'alt' => ''));
+}
+
+/**
  * Register all shortcodes.
  */
 function register_shortcodes(){
    add_shortcode('static_image', 'static_image');
    add_shortcode('post_images', 'post_images');
+   add_shortcode('download_link', 'download_link');
 }
 
 // Add registration to WordPress’ initialization action.

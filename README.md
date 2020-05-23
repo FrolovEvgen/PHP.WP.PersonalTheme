@@ -64,6 +64,7 @@ None.
 
 * `static_image` - Shows image with specific tag.
 * `post_images` - Creates post's list as image gallery.
+* `download_link` - Creates download link with icon.
 
 ### [static_image]
 
@@ -99,6 +100,21 @@ link to related post.
 * `[post_images name="Favorites"]`
 * `[post_images id="5"]`
 * `[static_image id="5" count="8"]` 
+
+### [download_link]
+
+Creates download link with icon, which dependence on file extension. If not found related icon it creates default icon.
+
+#### Attributes
+
+ * `file` - Name of file located in '/download/' static folder.
+ * `link` - Link to internal or external resource.
+ * `title` - (optional) Title for link.
+
+#### Examples
+
+* `[download_link file='test.pdf' title='Test PDF']`
+* `[download_link link='http://wordpress.tst:81/wp-content/uploads/2020/05/2615001.pdf']`
 
 ## Link.
 

@@ -385,6 +385,20 @@ ul.page-numbers li .page-numbers.current {
 	display: none;
 }
 
+/* Download link */
+p.download {
+    font-size: 125%;
+}
+p.download span {
+    font-weight: bold;
+}
+p.download a {
+    text-decoration: none;
+}
+p.download img {
+    height: 32px;
+} 
+
 footer p { 
     font-size: 110%;
     color: #777;
