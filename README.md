@@ -106,5 +106,6 @@ Working link: not created yet
 
 ## Used online utilities.
 
- - Online minifier (js & css): https://www.uglifyjs.net/
- - Image compressor: https://imagecompressor.com/
+- Online minifier (js & css): https://www.uglifyjs.net/
+- Image compressor: https://imagecompressor.com/
+- Icons made by [**Smashicons**](https://www.flaticon.com/authors/smashicons) from [**www.flaticon.com**](https://www.flaticon.com/packs/file-types)

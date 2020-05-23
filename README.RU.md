@@ -106,5 +106,6 @@ PHP: **5.6**
 
 ## Использованы ресурсы.
 
- - Онлайн минификатор (js & css): https://www.uglifyjs.net/
- - Сжатие картинок: https://imagecompressor.com/
+- Онлайн минификатор (js & css): https://www.uglifyjs.net/
+- Сжатие картинок: https://imagecompressor.com/
+- Иконки от [**Smashicons**](https://www.flaticon.com/authors/smashicons) взяты с [**www.flaticon.com**](https://www.flaticon.com/packs/file-types)
