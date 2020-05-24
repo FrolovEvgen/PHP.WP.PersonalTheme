@@ -161,16 +161,18 @@ function download_link($attr) {
     if ($params['file'] !== '') {
         $filename = $params['file'];        
         $icom_img = get_icon($filename);       
-        $source = get_resource('/download/' . $filename);        
+        $source = get_resource('/download.php?file=' . $filename);        
     } else if ($params['link'] !== '') {
-        $source = $params['link'];
-        $icom_img = get_icon($source);            
+        $url = $params['link'];
+        $icom_img = get_icon($url);
+        $attachment_id = get_attachment_id($url);
+        $source = get_resource('/download.php?attachment_id=' .  $attachment_id);
     } else {    
-        return '<p style="color:red">'. i18l('download.error'). '</p>';    
+        return '<p style="color:red">' . i18l('download.error') . '</p>';    
     }
     $title = $params['title'];
     return '<p class="download"><span>'. i18l('download.title'). '&nbsp;:&nbsp;</span>' . 
-           '<a href="' .  $source . '" target="_blank" title="' . $title . '">' . 
+           '<a href="' .  $source . '" title="' . $title . '">' . 
             $icom_img . '</a></p>';;
 }
 
@@ -192,6 +194,18 @@ function get_icon($path) {
         $icon = $extension . '.png';
     }
     return static_image(array('name' => $icon, 'alt' => ''));
+}
+
+/**
+ * Get attachment id by URL.
+ * @global Handler $wpdb WP Database connector.
+ * @param string $url Attachment URL 
+ * @return int Attachment id
+ */
+function get_attachment_id($url) {
+    global $wpdb;
+    $attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $url )); 
+    return $attachment[0]; 
 }
 
 /**

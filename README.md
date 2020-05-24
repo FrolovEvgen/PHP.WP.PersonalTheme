@@ -25,6 +25,7 @@ Requires PHP: **5.6**
 * `lang/` - Translations.
 * `templates/` - Included templates.
 * `category.php` - The template for displaying all single posts.
+* `download.php` - Script for download file.
 * `footer.php` - The template for displaying the footer.
 * `front-page.php` - The template for displaying main page.
 * `functions.php` - Theme's functions and definitions.
