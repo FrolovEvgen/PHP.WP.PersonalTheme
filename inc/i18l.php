@@ -40,10 +40,10 @@ if (!defined('THEME_PATH')) {
 /**
  * Import classes.
  */
-import ('/classes/AbstractEntity.php');
-import ('/classes/Properties.php');
-import ('/classes/AbstractParamEntity.php');
-import ('/classes/Settings.php');
+import (DS . 'classes' . DS . 'AbstractEntity.php');
+import (DS . 'classes' . DS . 'Properties.php');
+import (DS . 'classes' . DS . 'AbstractParamEntity.php');
+import (DS . 'classes' . DS . 'Settings.php');
 
 /**
  * Load language setting.

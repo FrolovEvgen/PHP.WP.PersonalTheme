@@ -37,6 +37,11 @@
  */
 define('THEME_PATH', dirname(__FILE__));
 
+/** 
+ * Directory separator
+ */
+define('DS', DIRECTORY_SEPARATOR);
+
 if (function_exists('add_theme_support')) {
     // Custom menus.
     add_theme_support('menus');
@@ -328,15 +333,15 @@ function import($path) {
  * @param array $params (optional) Template's parameters if need.
  */
 function include_template($include_path, $params = []) {
-    include THEME_PATH . "/templates/" . $include_path . ".php";
+    include THEME_PATH . DS . 'templates' . DS . $include_path . '.php';
 }
 
 /**
  * Theme shortcodes.
  */
-import('/inc/shortcodes.php');
+import(DS .'inc' . DS . 'shortcodes.php');
 
 /**
  * Theme internationalization.
  */
-import('/inc/i18l.php');
+import(DS .'inc' . DS . 'i18l.php');

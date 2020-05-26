@@ -104,7 +104,7 @@ $theme_path = dirname(__FILE__);
 // Try to check if filename set.
 $file = read_param('file');
 if ($file !== NULL) {
-    $file = $theme_path . '/download/' . $file;    
+    $file = $theme_path . DS .'download' . DS . $file;    
 } else {
     // Get file from attachment id.
     $attachment_id = read_param('attachment_id');

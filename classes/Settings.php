@@ -171,7 +171,7 @@ class Settings extends AbstractParamEntity {
      */
     private function loadFile() {
         // Get full Path.
-        $fullPath = THEME_PATH . '\\lang\\' . $this->getParam('settings_file');
+        $fullPath = THEME_PATH . DS. 'lang' . DS . $this->getParam('settings_file');
 
         // If exists we will load it and parse.
         if (file_exists($fullPath)) {

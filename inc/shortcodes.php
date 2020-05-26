@@ -186,7 +186,7 @@ function download_link($attr) {
 function get_icon($path) {
     $array = explode('.', $path);
     $extension = end($array);        
-    $icon_image = THEME_PATH . '\\i\\' . $extension . '.png';
+    $icon_image = THEME_PATH . DS . 'i' . DS . $extension . '.png';
         
     if (!file_exists ($icon_image)) {
         $icon = 'empty.png';
