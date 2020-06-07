@@ -65,7 +65,9 @@ function register_theme_scripts () {
 
 /**
  * Get resource's full path.
+ * 
  * @param string $path Relative path.
+ * 
  * @return string Full path.
  */
 function get_resource ($path) {
@@ -74,6 +76,7 @@ function get_resource ($path) {
 
 /**
  * Start html content's container.
+ * 
  * @param string $id (optional) Add item id to the Section.
  * @param string $class (optional) Additional class for Content container.
  */
@@ -96,7 +99,9 @@ function print_section_end() {
 
 /**
  * Print available posts in category.
+ * 
  * @global object $wp_query Wordpress query object.
+ * 
  * @param int $posts_per_page (optional) Count posts per page.
  */
 function print_posts($posts_per_page = 10) {
@@ -152,8 +157,9 @@ function print_posts($posts_per_page = 10) {
 }
 
 /**
+ * Get current page in pagination list.
  * 
- * @return type
+ * @return int Current page num.
  */
 function get_current_page() {
     return (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -161,6 +167,7 @@ function get_current_page() {
 
 /**
  * Render top menu by saved WP menu configuration.
+ * 
  * @param string $menu_name Menu configuration name.
  */
 function print_top_menu($menu_name) {
@@ -195,22 +202,23 @@ function print_top_menu($menu_name) {
 
 /**
  * Create fluid preview from thumbnail.
+ * 
  * @param boolean $fLink (optional) create link to post.
  */
 function get_the_post_image($fLink = false) {
-    $html = get_the_post_thumbnail();
-    $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
+    $thumbnails = get_the_post_thumbnail();
+    $html = preg_replace( '/(width|height)=\"\d*\"\s/', '',  $thumbnails );
     if ($fLink) {
         $html = '<a  href="' . get_the_permalink() . 
                 '" title="' . get_the_title() . 
                 '">' . $html . '</a>';
-        
     }
     return '<div class="img preview">' . $html . '</div>';     
 }
 
 /**
  * Print fluid preview from thumbnail.
+ * 
  * @param boolean $fLink (optional) create link to post.
  */
 function print_post_image($fLink = false) {
@@ -266,6 +274,7 @@ function ends_with($string, $endString) {
 
 /**
  * Creates pagination.
+ * 
  * @global object $wp_query Wordpress query object.
  */
 function print_page_navigation() {
@@ -329,6 +338,7 @@ function import($path) {
 
 /**
  * Imports template.
+ * 
  * @param string $include_path Relative path to template;
  * @param array $params (optional) Template's parameters if need.
  */
@@ -337,8 +347,10 @@ function include_template($include_path, $params = []) {
 }
 
 /**
- * Check if value is Null or empty string;
+ * Check if value is Null or empty string.
+ * 
  * @param string $value
+ * 
  * @return type
  */
 function isNullOrEmpty($value) {
