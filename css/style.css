@@ -255,11 +255,10 @@ aside {
     font-size: 130%;
 }
 .post .content .table-row .td {
-    text-indent: 1pt;
+    text-indent: 10pt;
 }
 .post .content .table-row .th {
-    font-weight: bold;
-    text-align: right;
+    font-weight: bold;   
 }
 /* Category list styles */
 .img {
@@ -537,6 +536,13 @@ nav.navbar .menu {
     } 
     .container {
         width: 766px;
+    }
+    .post .content .table-row .td {
+        text-indent: 15pt;
+    }
+    .post .content .table-row .th {
+        font-weight: bold;   
+        text-align: right;
     }
     /* Enable flex options for grid */
     .container .row {
