@@ -78,10 +78,10 @@ function get_resource ($path) {
  * @param string $class (optional) Additional class for Content container.
  */
 function print_section_start($id = "", $class="") {
-    if ("" !== $id) {
+    if (!isNullOrEmpty($id)) {
         $id = " id=\"item-$id\"";
     }
-    if ("" !== $class) {
+    if (!isNullOrEmpty($class)) {
         $class = " $class";
     }
     echo '<section' . $id . ' class="post"><div class="content' . $class . '">';
@@ -334,6 +334,15 @@ function import($path) {
  */
 function include_template($include_path, $params = []) {
     include THEME_PATH . DS . 'templates' . DS . $include_path . '.php';
+}
+
+/**
+ * Check if value is Null or empty string;
+ * @param string $value
+ * @return type
+ */
+function isNullOrEmpty($value) {
+    return NULL === $value || '' === $value;
 }
 
 /**
