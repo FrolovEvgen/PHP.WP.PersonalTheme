@@ -64,19 +64,19 @@ function static_image($attr) {
 	$url = get_resource('/i/' . $params['name']);
 	
 	$result = '<img src="' . $url . '"';	
-	if ($params['class'] != '') {
+	if (!isNullOrEmpty($params['class'])) {
 		$result .= ' class="' . $params['class'] . '"';
 	}
-	if ($params['title'] != '') {
+	if (!isNullOrEmpty($params['title'])) {
 		$result .= ' title="' . $params['title'] . '"';
 	}
-	if ($params['alt'] != '') {
+	if (!isNullOrEmpty($params['alt'])) {
 		$result .= ' alt="' . $params['alt'] . '"';
 	}
-	if ($params['width'] != '') {
+	if (!isNullOrEmpty($params['width'])) {
 		$result .= ' width="' . $params['width'] . '"';
 	}
-	if ($params['height'] != '') {
+	if (!isNullOrEmpty($params['height'])) {
 		$result .= ' height="' . $params['height'] . '"';
 	}
 	$result .= '>';
@@ -107,14 +107,14 @@ function post_images($attr) {
     $category_ID = null;
     
     // Collect category ID
-    if ($params['name'] !== '') {
+    if (!isNullOrEmpty($params['name'])) {
         $category_ID = get_cat_ID($params['name']);
-    } elseif( $params['id'] !== '') {
+    } elseif(!isNullOrEmpty($params['id'])) {
         $category_ID = (int) $params['id'];
     }
     
     // If Category ID exists;
-    if ($category_ID !== null) {
+    if (!isNullOrEmpty($category_ID)) {
         $lang_category_ID = apply_filters('wpml_object_id', $category_ID, 'category', TRUE);
         $category = get_category($lang_category_ID);
         // Create header.
@@ -158,11 +158,11 @@ function download_link($attr) {
         'title' => i18l('download.link.title')
     ), $attr );
     
-    if ($params['file'] !== '') {
+    if (!isNullOrEmpty($params['file'])) {
         $filename = $params['file'];        
         $icom_img = get_icon($filename);       
         $source = get_resource('/download.php?file=' . $filename);        
-    } else if ($params['link'] !== '') {
+    } else if (!isNullOrEmpty($params['link'])) {
         $url = $params['link'];
         $icom_img = get_icon($url);
         $attachment_id = get_attachment_id($url);
@@ -209,12 +209,76 @@ function get_attachment_id($url) {
 }
 
 /**
+ * Creates italic decoration for specified content.
+ * $attr['class'] - (optional) Adds specified class for tag.
+ * 
+ * @param array $attr Attributes.
+ * @param string $content Text content.
+ * 
+ * @return string Decorated content.
+ */
+function italic_format($attr, $content = null) {
+    $params = shortcode_atts( array( 
+        'class' => ''
+    ), $attr );
+    $class = '';
+    if (!isNullOrEmpty($params['class'])) {
+        $class = ' class="' .  $params['class'] . '"';
+    }
+    return "<i$class>$content</i>";
+}
+
+/**
+ * Creates bold decoration for specified content.
+ * $attr['class'] - (optional) Adds specified class for tag.
+ * 
+ * @param array $attr Attributes.
+ * @param string $content Text content.
+ * 
+ * @return string Decorated content.
+ */
+
+function bold_format($attr, $content = null) {
+    $params = shortcode_atts( array( 
+        'class' => ''
+    ), $attr );
+    $class = '';
+    if (!isNullOrEmpty($params['class'])) {
+        $class = ' class="' .  $params['class'] . '"';
+    }
+    return "<b$class>$content</b>";
+}
+
+/**
+ * Creates underline decoration for specified content.
+ * $attr['class'] - (optional) Adds specified class for tag.
+ * 
+ * @param array $attr Attributes.
+ * @param string $content Text content.
+ * 
+ * @return string Decorated content.
+ */
+function underline_format($attr, $content = null) {
+    $params = shortcode_atts( array( 
+        'class' => ''
+    ), $attr );
+    $class = '';
+    if (!isNullOrEmpty($params['class'])) {
+        $class = ' class="' .  $params['class'] . '"';
+    }
+    return "<u$class>$content</u>";
+}
+
+/**
  * Register all shortcodes.
  */
-function register_shortcodes(){
+function register_shortcodes() {
    add_shortcode('static_image', 'static_image');
    add_shortcode('post_images', 'post_images');
    add_shortcode('download_link', 'download_link');
+   add_shortcode('underline', 'underline_format');
+   add_shortcode('bold', 'bold_format');
+   add_shortcode('italic', 'italic_format');
 }
 
 // Add registration to WordPress’ initialization action.

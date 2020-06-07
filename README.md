@@ -66,6 +66,9 @@ None.
 * `static_image` - Shows image with specific tag.
 * `post_images` - Creates post's list as image gallery.
 * `download_link` - Creates download link with icon.
+* `underline` - Creates underline decoration for specified content.
+* `bold` - Creates bold decoration for specified content.
+* `italic` - Creates italic decoration for specified content.
 
 ### [static_image]
 
@@ -117,9 +120,48 @@ Creates download link with icon, which dependence on file extension. If not foun
 * `[download_link file='test.pdf' title='Test PDF']`
 * `[download_link link='http://wordpress.tst:81/wp-content/uploads/2020/05/2615001.pdf']`
 
+### [underline]
+
+Creates underline decoration for specified content.
+
+#### Attributes
+
+ * `class` - (optional) Adds specified class for tag.
+
+#### Examples
+
+* `[underline]Text[/underline]`
+* `[underline class="RedText"]Text[/underline]`
+
+### [bold]
+
+Creates bold decoration for specified content.
+
+#### Attributes
+
+ * `class` - (optional) Adds specified class for tag.
+
+#### Examples
+
+* `[bold]Text[/bold]`
+* `[bold class="RedText"]Text[/bold]`
+
+### [italic]
+
+Creates italic decoration for specified content.
+
+#### Attributes
+
+ * `class` - (optional) Adds specified class for tag.
+
+#### Examples
+
+* `[italic]Text[/italic]`
+* `[italic class="RedText"]Text[/italic]`
+
 ## Link.
 
-Working link: not created yet
+Working link: https://frolov.kyiv.ua
 
 ## Used online utilities.
 

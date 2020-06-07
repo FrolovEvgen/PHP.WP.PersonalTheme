@@ -66,6 +66,9 @@ PHP: **5.6**
 * `static_image` - Отображает картинки с конфигурацией.
 * `post_images` - Отображает список статей, как галерею превьюшек.
 * `download_link` - Создает ссылку на скачивание с иконкой.
+* `underline` - создает подчеркивание текста.
+* `bold` - Создает жирный текст.
+* `italic` - Создает наклонный текст.
 
 ### [static_image]
 
@@ -117,9 +120,48 @@ PHP: **5.6**
 * `[download_link file='test.pdf' title='Test PDF']`
 * `[download_link link='http://wordpress.tst:81/wp-content/uploads/2020/05/2615001.pdf']`
 
+### [underline]
+
+Создает подчеркивание текста.
+
+#### Параметры.
+
+ * `class` - (optional) Добавляет дополнительные классы.
+
+#### Примеры использования.
+
+* `[underline]Text[/underline]`
+* `[underline class="RedText"]Text[/underline]`
+
+### [bold]
+
+Создает жирный текст.
+
+#### Параметры.
+
+ * `class` - (optional) Добавляет дополнительные классы.
+
+#### Примеры использования.
+
+* `[bold]Text[/bold]`
+* `[bold class="RedText"]Text[/bold]`
+
+### [italic]
+
+Создает наклонный текст.
+
+#### Параметры.
+
+ * `class` - (optional) Добавляет дополнительные классы.
+
+#### Примеры использования.
+
+* `[italic]Text[/italic]`
+* `[italic class="RedText"]Text[/italic]`
+
 ## Ссылки.
 
-Работающий пример: еще нет.
+Работающий пример: https://frolov.kyiv.ua
 
 ## Использованы ресурсы.
 
