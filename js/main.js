@@ -22,11 +22,23 @@
  * THE SOFTWARE.
  */
 
-
-/* bind event function for Toggle buttons */
-var button = document.querySelectorAll(".class-toggler");
-button.forEach(function(item){
-    item.onclick = toggleClass;
-});
-
-
+/**
+ * Switch class on linked target.
+ * @param {event} e
+ * @returns {undefined}
+ */
+var toggleClass = function(e) {
+    var dataSet = e.target.dataset,
+        htmlElement = document.getElementById(dataSet.item);
+		
+    if (null !== htmlElement) {
+        var classList = htmlElement.classList,
+            cls = dataSet.class;
+		
+        if (classList.contains(cls)) {
+            classList.remove(cls);
+        } else {
+            classList.add(cls);
+        }
+    }
+};

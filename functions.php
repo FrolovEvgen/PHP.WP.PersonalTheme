@@ -59,8 +59,8 @@ function register_theme_styles () {
 // Register themes scripts.
 add_action('wp_enqueue_scripts', 'register_theme_scripts');
 function register_theme_scripts () {
-    //wp_register_script('jquery_1.4.2', theme_url('/js/script.min.js'));
-    //wp_enqueue_script('jquery_1.4.2');
+    wp_register_script('main_js', get_resource('/js/main.min.js'));
+    wp_enqueue_script('main_js');
 }
 
 /**
