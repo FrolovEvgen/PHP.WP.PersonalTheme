@@ -206,8 +206,7 @@ function print_top_menu($menu_name) {
  * @param boolean $fLink (optional) create link to post.
  */
 function get_the_post_image($fLink = false) {
-    $thumbnails = get_the_post_thumbnail();
-    $html = preg_replace( '/(width|height)=\"\d*\"\s/', '',  $thumbnails );
+    $html = get_the_post_thumbnail(null, 'thumbnail');
     if ($fLink) {
         $html = '<a  href="' . get_the_permalink() . 
                 '" title="' . get_the_title() . 

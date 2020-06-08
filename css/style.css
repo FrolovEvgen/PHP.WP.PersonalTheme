@@ -273,8 +273,7 @@ aside {
     border-color:#999;
     background:#ddd;
 }
-.img.preview {    
-    height: auto;
+.img.preview {
     max-width: 200px; 
     margin-left: auto;
     margin-right: auto;
@@ -284,8 +283,20 @@ aside {
     margin-left: auto;
     margin-right: auto;
 }
+.img.aligncenter {
+    margin-left: auto;
+    margin-right: auto;
+}
+.img.aligncenter:hover{
+    cursor: pointer;
+}
 .img.preview img {
     width: 100%;
+    height: auto;
+}
+.img .wp-caption-text {
+    font-style: italic;
+    color: #888;
 }
 p.description {
     margin-bottom: 10px!important;
@@ -296,6 +307,55 @@ p.category {
     color: #999;
 }
 
+/* Modals */
+.modal {
+    width: 100vw;
+    height: 100vh;
+    background: url('../i/modal_bg.png') repeat top left;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.cover .modal_header {
+    height: 30px;
+    background: #f6f6f6;
+    margin-top: 5px;
+}
+
+.cover .modal_header .cancel {
+    float: right;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.cover .modal_content {
+    background: #fefefe;
+}
+
+.cover .modal_content h3 {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    height: 50px;
+    border-bottom: 1px solid #ccc;
+    background: #f6f6f6;
+    margin: 0;
+}
+.cover .modal_content .image {    
+    padding: 10px;
+}
+.cover .modal_content .image img {
+    margin: 0 auto;
+    display: block;
+}
+.cover .modal_content p {
+    font-style: italic;
+    color: #888;
+    padding: 5px;
+    text-align: center;
+}
 /* category pagination */
 ul.page-numbers {
 	margin-top: 10px;
@@ -643,7 +703,9 @@ nav.navbar .menu {
     #item-nav .post-title{
         display: block;
     }
-    
+    .cover .modal_header {
+        margin-top: 30px;
+    }
     footer p {
         text-align: left
     }

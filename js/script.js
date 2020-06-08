@@ -24,9 +24,14 @@
 
 
 /* bind event function for Toggle buttons */
-var button = document.querySelectorAll(".class-toggler");
-button.forEach(function(item){
+var buttons = document.querySelectorAll(".class-toggler");
+buttons.forEach(function(item){
     item.onclick = toggleClass;
 });
 
+/* bind event functions for image containrs */
+var imageContainers = document.querySelectorAll(".img.wp-caption");
+imageContainers.forEach(function(item) {
+	item.onclick = showModal;
+});
 
