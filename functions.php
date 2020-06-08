@@ -349,9 +349,9 @@ function include_template($include_path, $params = []) {
 /**
  * Check if value is Null or empty string.
  * 
- * @param string $value
+ * @param string $value Text.
  * 
- * @return type
+ * @return boolean Check result.
  */
 function isNullOrEmpty($value) {
     return NULL === $value || '' === $value;

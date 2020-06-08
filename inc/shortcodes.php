@@ -222,10 +222,11 @@ function italic_format($attr, $content = null) {
         'class' => ''
     ), $attr );
     $class = '';
+    $result = decorates($content);
     if (!isNullOrEmpty($params['class'])) {
         $class = ' class="' .  $params['class'] . '"';
     }
-    return "<i$class>$content</i>";
+    return "<i$class>$result</i>";
 }
 
 /**
@@ -243,10 +244,11 @@ function bold_format($attr, $content = null) {
         'class' => ''
     ), $attr );
     $class = '';
+    $result = decorates($content);        
     if (!isNullOrEmpty($params['class'])) {
         $class = ' class="' .  $params['class'] . '"';
     }
-    return "<b$class>$content</b>";
+    return "<b$class>$result</b>";
 }
 
 /**
@@ -263,10 +265,115 @@ function underline_format($attr, $content = null) {
         'class' => ''
     ), $attr );
     $class = '';
+    $result = decorates($content);
     if (!isNullOrEmpty($params['class'])) {
         $class = ' class="' .  $params['class'] . '"';
     }
-    return "<u$class>$content</u>";
+    return "<u$class>$result</u>";
+}
+
+/**
+ * Creates quotes decoration for specified content.
+ * $attr['class'] - (optional) Adds specified class for tag.
+ * 
+ * @param array $attr Attributes.
+ * @param string $content Text content.
+ * 
+ * @return string Decorated content.
+ */
+function quotes_format($attr, $content = null) {
+    $params = shortcode_atts( array( 
+        'class' => ''
+    ), $attr );
+    $class = '';
+    $result = decorates($content);
+    if (!isNullOrEmpty($params['class'])) {
+        $class = ' class="' .  $params['class'] . '"';
+        return "&laquo;<span$class>$result</span>&raquo;";
+    }
+    return "&laquo;$result&raquo;";
+}
+
+/**
+ * Decorates text according specified tags.
+ * 
+ * @param string $content Text content.
+ * 
+ * @return string Decorated text.
+ */
+function decorates($content) {
+    $result = bold_decorate($content);
+    $result = underline_decorate($result);
+    $result = italic_decorate($result);
+    return quotes_decorate($result);
+}
+
+/**
+ * Decorates text with bold style.
+ * 
+ * @param string $content Text content.
+ * 
+ * @return string Decorated text.
+ */
+function bold_decorate($content) {
+    $pattern = '/\[bold\s*class\s*=\s*[\"|\'](.*)[\"|\']\s*\](.*)\[\/bold\]/';
+    $template = '<b class="$1">$2</b>';    
+    if (preg_match($pattern, $content, $matches) == 0) { 
+        $pattern = '/\[bold\](.*)\[\/bold\]/';
+        $template = '<b>$1</b>';        
+    }
+    return preg_replace($pattern, $template, $content);
+}
+
+/**
+ * Decorates text with underline style.
+ * 
+ * @param string $content Text content.
+ * 
+ * @return string Decorated text.
+ */
+function underline_decorate($content) {
+    $pattern = '/\[undelrine\s*class\s*=\s*[\"|\'](.*)[\"|\']\s*\](.*)\[\/underline\]/';
+    $template = '<u class="$1">$2</u>';    
+    if (preg_match($pattern, $content, $matches) == 0) { 
+        $pattern = '/\[underline\](.*)\[\/underline\]/';
+        $template = '<u>$1</u>';        
+    }
+    return preg_replace($pattern, $template, $content);
+}
+
+/**
+ * Decorates text with italic style.
+ * 
+ * @param string $content Text content.
+ * 
+ * @return string Decorated text.
+ */
+function italic_decorate($content) {
+    $pattern = '/\[italic\s*class\s*=\s*[\"|\'](.*)[\"|\']\s*\](.*)\[\/italic\]/';
+    $template = '<i class="$1">$2</i>';    
+    if (preg_match($pattern, $content, $matches) == 0) { 
+        $pattern = '/\[italic\](.*)\[\/italic\]/';
+        $template = '<i>$1</i>';        
+    }
+    return preg_replace($pattern, $template, $content);
+}
+
+/**
+ * Decorates text with quotes.
+ * 
+ * @param string $content Text content.
+ * 
+ * @return string Decorated text.
+ */
+function quotes_decorate($content) {
+    $pattern = '/\[quotes\s*class\s*=\s*[\"|\'](.*)[\"|\']\s*\](.*)\[\/quotes\]/';
+    $template = '&laquo;<span class="$1">$2</span>&raquo;';    
+    if (preg_match($pattern, $content, $matches) == 0) { 
+        $pattern = '/\[quotes\](.*)\[\/quotes\]/';
+        $template = '&laquo;$1&raquo;';        
+    }
+    return preg_replace($pattern, $template, $content);
 }
 
 /**
@@ -279,6 +386,7 @@ function register_shortcodes() {
    add_shortcode('underline', 'underline_format');
    add_shortcode('bold', 'bold_format');
    add_shortcode('italic', 'italic_format');
+   add_shortcode('quotes', 'quotes_format');
 }
 
 // Add registration to WordPress’ initialization action.
