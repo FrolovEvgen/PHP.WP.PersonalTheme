@@ -196,7 +196,7 @@ aside {
     padding: 10px 5px;
  }
 .tagcloud a{
-    display: inline;
+    display: inline-block;
     padding:4px 10px;
     margin-right:7px;
     margin-bottom:7px;
@@ -251,7 +251,7 @@ aside {
     text-decoration: underline;
 }
 .post .content p {
-    margin: 2px;
+    margin: 5px;
     font-size: 130%;
 }
 .post .content .table-row .td {
