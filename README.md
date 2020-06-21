@@ -98,6 +98,8 @@ link to related post.
 * `name` - The name of category.
 * `id` - The id of category.
 * `count` - (optional) Count of last posts for selecting. [default = 4]
+* `title` - (optional) Title for head.
+* `title_id` - (optional) Internationalization key for title.
 
 #### Examples
 
@@ -111,12 +113,12 @@ Creates download link with icon, which dependence on file extension. If not foun
 
 #### Attributes
 
- * `file` - Name of file located in '/download/' static folder.
- * `link` - Link to internal or external resource.
- * `title` - (optional) Title for link.
- * `title_id` - (optional) Internationalization key for title.
- * `details` - (optional) Details text for link.
- * `details_id` - (optional) Internationalization key for details.
+* `file` - Name of file located in '/download/' static folder.
+* `link` - Link to internal or external resource.
+* `title` - (optional) Title for link.
+* `title_id` - (optional) Internationalization key for title.
+* `details` - (optional) Details text for link.
+* `details_id` - (optional) Internationalization key for details.
 
 #### Examples
 
@@ -130,7 +132,7 @@ Creates underline decoration for specified content.
 
 #### Attributes
 
- * `class` - (optional) Adds specified class for tag.
+* `class` - (optional) Adds specified class for tag.
 
 #### Examples
 
@@ -143,7 +145,7 @@ Creates bold decoration for specified content.
 
 #### Attributes
 
- * `class` - (optional) Adds specified class for tag.
+* `class` - (optional) Adds specified class for tag.
 
 #### Examples
 
@@ -156,7 +158,7 @@ Creates italic decoration for specified content.
 
 #### Attributes
 
- * `class` - (optional) Adds specified class for tag.
+* `class` - (optional) Adds specified class for tag.
 
 #### Examples
 

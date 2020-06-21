@@ -88,6 +88,8 @@ function static_image($attr) {
  * $attr["name"] - The name of category.
  * $attr["id"] - The id of category.
  * $attr["count"] - (optional) Count of last posts for selecting.
+ * $attr["title"] - (optional) Text for heading.
+ * $attr["title_id"] - (optional) Internationalization key for text.
  * 
  * @example [post_images name="Favorites"]
  * @example [post_images id="5"]
@@ -98,6 +100,8 @@ function static_image($attr) {
  */
 function post_images($attr) {
     $params = shortcode_atts( array( 
+        'title' => '',
+        'title_id' => '',
         'name' => '',
         'id' => '',
         'count'=> '4'
@@ -116,10 +120,20 @@ function post_images($attr) {
     // If Category ID exists;
     if (!isNullOrEmpty($category_ID)) {
         $lang_category_ID = apply_filters('wpml_object_id', $category_ID, 'category', TRUE);
-        $category = get_category($lang_category_ID);
+        
+        $title = '';    
+        if (!isNullOrEmpty($params['title'])) {
+            $title = $params['title'];
+        } else if (!isNullOrEmpty($params['title_id'])) {
+            $title = i18l($params['title_id']);
+        } else {
+            $category = get_category($lang_category_ID);
+            $title = $category->name;
+        }
+        
         // Create header.
         $html .= '<div class="row"><div class="cell">';
-        $html .= '<h3>' . $category->name . '</h3>';
+        $html .= '<h3>' . $title . '</h3>';
         $html .= '</div></div>';    
         // Create images.
         $posts = new WP_Query('cat=' . $lang_category_ID . '&posts_per_page=' . $params['count']);
