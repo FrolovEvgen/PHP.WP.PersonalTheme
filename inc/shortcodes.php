@@ -146,16 +146,22 @@ function post_images($attr) {
  * Creates download link with icon.
  * $attr['file'] - Filename located in '/download/' static folder.
  * $attr['link'] - Link to internal or external resource.
- * $attr['title'] - (optional) Title for link.
+ * $attr['title'] - (optional) Title for link. 
+ * $attr['title_id'] - (optional) Id for internationalization link title.
+ * $attr['head'] - (optional) Name for link container.
+ * $attr['head_id'] - (optional) Id for internationalization name for container.
  * 
  * @param array $attr Attributes.
  * @return string Html.
  */
 function download_link($attr) {
     $params = shortcode_atts( array( 
+        'details_id' => '',
+        'details' => '',
         'file' => '',
         'link' => '',
-        'title' => i18l('download.link.title')
+        'title' => '',
+        'title_id' => 'download.link.title'
     ), $attr );
     
     if (!isNullOrEmpty($params['file'])) {
@@ -170,10 +176,27 @@ function download_link($attr) {
     } else {    
         return '<p style="color:red">' . i18l('download.error') . '</p>';    
     }
-    $title = $params['title'];
-    return '<p class="download"><span>'. i18l('download.title'). '&nbsp;:&nbsp;</span>' . 
-           '<a href="' .  $source . '" title="' . $title . '">' . 
-            $icom_img . '</a></p>';;
+    
+    $title = '';    
+    if (!isNullOrEmpty($params['title'])) {
+        $title = $params['title'];
+    } else if (!isNullOrEmpty($params['title_id'])) {
+        $title = i18l($params['title_id']);
+    }
+    
+    $details = '';
+    if (!isNullOrEmpty($params['details'])) {
+        $details = $params['details'];
+    } else if (!isNullOrEmpty($params['details_id'])) {
+        $details = i18l($params['details_id']);
+    }
+    
+    if (!isNullOrEmpty($details)) { 
+        $details = '<span>' . $details . '&nbsp;:&nbsp;</span>';
+    }
+    
+    return '<p class="download">' . $details . '<a href="' .  $source . 
+            '" title="' . $title . '">' . $icom_img . '</a></p>';;
 }
 
 /**

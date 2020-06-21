@@ -114,11 +114,15 @@ Creates download link with icon, which dependence on file extension. If not foun
  * `file` - Name of file located in '/download/' static folder.
  * `link` - Link to internal or external resource.
  * `title` - (optional) Title for link.
+ * `title_id` - (optional) Internationalization key for title.
+ * `details` - (optional) Details text for link.
+ * `details_id` - (optional) Internationalization key for details.
 
 #### Examples
 
 * `[download_link file='test.pdf' title='Test PDF']`
 * `[download_link link='http://wordpress.tst:81/wp-content/uploads/2020/05/2615001.pdf']`
+* `[download_link file='test.pdf' details='Special downloads']`
 
 ### [underline]
 
