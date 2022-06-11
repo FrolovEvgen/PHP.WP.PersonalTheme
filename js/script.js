@@ -29,9 +29,9 @@ buttons.forEach(function(item){
     item.onclick = toggleClass;
 });
 
-/* bind event functions for image containrs */
+/* bind event functions for image containers */
 var imageContainers = document.querySelectorAll(".img.wp-caption");
 imageContainers.forEach(function(item) {
-	item.onclick = showModal;
+    item.onclick = showModal;
 });
 

@@ -210,7 +210,7 @@ function download_link($attr) {
     }
     
     return '<p class="download">' . $details . '<a href="' .  $source . 
-            '" title="' . $title . '">' . $icom_img . '</a></p>';;
+            '" title="' . $title . '">' . $icom_img . '</a></p>';
 }
 
 /**
@@ -355,7 +355,7 @@ function decorates($content) {
 function bold_decorate($content) {
     $pattern = '/\[bold\s*class\s*=\s*[\"|\'](.*)[\"|\']\s*\](.*)\[\/bold\]/';
     $template = '<b class="$1">$2</b>';    
-    if (preg_match($pattern, $content, $matches) == 0) { 
+    if (preg_match($pattern, $content) == 0) { 
         $pattern = '/\[bold\](.*)\[\/bold\]/';
         $template = '<b>$1</b>';        
     }
@@ -372,7 +372,7 @@ function bold_decorate($content) {
 function underline_decorate($content) {
     $pattern = '/\[undelrine\s*class\s*=\s*[\"|\'](.*)[\"|\']\s*\](.*)\[\/underline\]/';
     $template = '<u class="$1">$2</u>';    
-    if (preg_match($pattern, $content, $matches) == 0) { 
+    if (preg_match($pattern, $content) == 0) { 
         $pattern = '/\[underline\](.*)\[\/underline\]/';
         $template = '<u>$1</u>';        
     }
@@ -389,7 +389,7 @@ function underline_decorate($content) {
 function italic_decorate($content) {
     $pattern = '/\[italic\s*class\s*=\s*[\"|\'](.*)[\"|\']\s*\](.*)\[\/italic\]/';
     $template = '<i class="$1">$2</i>';    
-    if (preg_match($pattern, $content, $matches) == 0) { 
+    if (preg_match($pattern, $content) == 0) { 
         $pattern = '/\[italic\](.*)\[\/italic\]/';
         $template = '<i>$1</i>';        
     }
@@ -406,7 +406,7 @@ function italic_decorate($content) {
 function quotes_decorate($content) {
     $pattern = '/\[quotes\s*class\s*=\s*[\"|\'](.*)[\"|\']\s*\](.*)\[\/quotes\]/';
     $template = '&laquo;<span class="$1">$2</span>&raquo;';    
-    if (preg_match($pattern, $content, $matches) == 0) { 
+    if (preg_match($pattern, $content) == 0) { 
         $pattern = '/\[quotes\](.*)\[\/quotes\]/';
         $template = '&laquo;$1&raquo;';        
     }
