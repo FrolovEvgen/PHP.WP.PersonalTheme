@@ -165,6 +165,24 @@ PHP: **5.6**
 * `[italic]Text[/italic]`
 * `[italic class="RedText"]Text[/italic]`
 
+### [caption_image]
+
+Создает изображение с подписью.
+
+#### Параметры.
+
+* `id` - ID для тега контейнера.
+* `width` - Ширина элемента, в px или %.
+* `max-width` - Максимальная ширина элемента, в px или %.
+* `align`- (optional) Имя класса для выравнивания элемента. По умолчанию 'alignnone'. Принимает 'alignleft', 'aligncenter', alignright', 'alignnone'.
+* `caption`- (optional) Текст подписи.
+* `class`- (optional) Дополнительные классы стилей элемента.
+
+#### Примеры использования.
+
+* `[caption_image id="attachment_97" class="img" align="aligncenter" max-width="231"]<img src="http://wordpress.tst:81/wp-content/uploads/2020/06/lcage-231x300.jpg" alt="Alt" width="100%" height="auto" class="size-medium wp-image-97" /> podpis 1[/caption_image]`
+
+
 ## Ссылки.
 
 Работающий пример: https://frolov.kyiv.ua

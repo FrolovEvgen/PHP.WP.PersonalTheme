@@ -51,7 +51,7 @@ if (!defined('THEME_PATH')) {
  * @param array $attr Image attributes             
  * @return string
  */
-function static_image($attr) {
+function sc_static_image($attr) {
 	$params = shortcode_atts( array( 
 		'name' => '',
 		'title'=> '',
@@ -98,7 +98,7 @@ function static_image($attr) {
  * @param array $attr Shortcode's attributes.
  * @return string Html.
  */
-function post_images($attr) {
+function sc_post_images($attr) {
     $params = shortcode_atts( array( 
         'title' => '',
         'title_id' => '',
@@ -168,7 +168,7 @@ function post_images($attr) {
  * @param array $attr Attributes.
  * @return string Html.
  */
-function download_link($attr) {
+function sc_download_link($attr) {
     $params = shortcode_atts( array( 
         'details_id' => '',
         'details' => '',
@@ -254,7 +254,7 @@ function get_attachment_id($url) {
  * 
  * @return string Decorated content.
  */
-function italic_format($attr, $content = null) {
+function sc_italic_format($attr, $content = null) {
     $params = shortcode_atts( array( 
         'class' => ''
     ), $attr );
@@ -275,8 +275,7 @@ function italic_format($attr, $content = null) {
  * 
  * @return string Decorated content.
  */
-
-function bold_format($attr, $content = null) {
+function sc_bold_format($attr, $content = null) {
     $params = shortcode_atts( array( 
         'class' => ''
     ), $attr );
@@ -297,7 +296,7 @@ function bold_format($attr, $content = null) {
  * 
  * @return string Decorated content.
  */
-function underline_format($attr, $content = null) {
+function sc_underline_format($attr, $content = null) {
     $params = shortcode_atts( array( 
         'class' => ''
     ), $attr );
@@ -318,7 +317,7 @@ function underline_format($attr, $content = null) {
  * 
  * @return string Decorated content.
  */
-function quotes_format($attr, $content = null) {
+function sc_quotes_format($attr, $content = null) {
     $params = shortcode_atts( array( 
         'class' => ''
     ), $attr );
@@ -414,16 +413,186 @@ function quotes_decorate($content) {
 }
 
 /**
+ * Builds the Caption shortcode output.
+ * 
+ * The supported attributes for the shortcode are 'id', 'align', 'width', 'max-width' and
+ * 'caption'.
+ * 
+ * @param array  $attr {
+ *     Attributes of the caption shortcode.
+ *
+ *     @type string $id         ID of the div element for the caption.
+ *     @type string $align      Class name that aligns the caption. 
+ *                              Default 'alignnone'. 
+ *                              Accepts 'alignleft', 'aligncenter', alignright', 'alignnone'.
+ *     @type int    $width      The width of the caption, in pixels or %.
+ *     @type int    $max-width  The width of the caption, in pixels or %.
+ *     @type string $caption    The caption text.
+ *     @type string $class      Additional class name(s) added to the caption container.
+ * }
+ * @param string $content Shortcode content.
+ * 
+ * @return string HTML content to display the caption.
+ */
+function sc_caption_image($attr, $content = null) {
+    // New-style shortcode with the caption inside the shortcode with the link and image tags.
+    if ( ! isset( $attr['caption'] ) ) {
+        if ( preg_match( '#((?:<a [^>]+>\s*)?<img [^>]+>(?:\s*</a>)?)(.*)#is', $content, $matches ) ) {
+            $content = $matches[1];
+            $attr['caption'] = trim( $matches[2] );
+        }
+    } elseif ( strpos( $attr['caption'], '<' ) !== false ) {
+        $attr['caption'] = wp_kses( $attr['caption'], 'post' );
+    }      
+    
+    $atts = shortcode_atts( array(
+        'id'        => '',
+        'align'     => 'alignnone',
+        'width'     => '',
+        'max-width' => '',
+        'caption'   => '',
+        'class'     => '',
+	), $attr, 'caption' );   
+    
+    if ( (empty($atts['width']) && empty($atts['max-width'])) || 
+            empty( $atts['caption'] ) ) {
+	return $content;
+    }
+    
+    if ( ((int) $atts['width']) < 1 && ((int) $atts['max-width'])< 1) {
+        return $content;
+    }
+    
+    $class = trim( 'wp-caption ' . $atts['align'] . ' ' . $atts['class'] );
+
+    $html5 = current_theme_supports( 'html5', 'caption' );
+    $tag_attr = array();
+    if ( ! empty( $atts['id'] ) ) {
+        $tag_attr['id'] = esc_attr( sanitize_html_class( $atts['id'] ) ) ;
+    }       
+    
+    if ( ! empty( $atts['class'] ) ) {
+        $tag_attr['class'] = esc_attr( $class );
+    }
+    
+    $style = join( ';', get_style($atts));
+    
+    if ( ! empty( $style ) ) {
+        $tag_attr['style'] = $style;
+    }
+    
+    $caption = do_shortcode( $content );
+    
+    if ( $html5 ) {       
+        
+        if (! empty($atts['caption'])) {
+            $caption .= build_tag("figcaption", array("class" => "wp-caption-text"), $atts['caption']);    
+        }
+        
+        $html = build_tag("figure", $tag_attr,  $caption);        
+         
+    } else {
+	if (! empty($atts['caption'])) {
+            $caption .= build_tag("p", array("class" => "wp-caption-text"), $atts['caption']);    
+        }
+        
+        $html = build_tag("div", $tag_attr,  $caption);  
+    }    
+    
+    return $html;
+}
+
+/**
+ * Gets styles as array.
+ * 
+ * Now supports 'width' and 'max-width' only. 
+ * 
+ * @param array $attr  Attributes of the caption shortcode.
+ * 
+ * @return array     Style attributes.
+ */
+function get_style($attr) {
+    $style_arr = array();
+    
+    if (isset($attr['width']) && !empty($attr['width'])) {
+        $style_arr[] = parse_length('width', $attr);    
+    }
+    
+    if (isset($attr['max-width']) && !empty($attr['max-width'])) {
+        $style_arr[] = parse_length('max-width', $attr);    
+    }
+    
+    return $style_arr;
+} 
+
+/**
+ * Parse numeric attribute.
+ * 
+ * @param string $name Name of attribute.
+ * @param array $attr Attributes of the caption shortcode.
+ * 
+ * @return string Parsed attribute with px or %. 
+ */
+function parse_length($name, $attr) {    
+    
+    $value = trim($attr[$name]);
+    $int_value = (int) $value;
+
+    if (str_endWith($value, '%')) {
+        return $name . ': ' . (int) $int_value . '%';
+    } else {
+        $html5 = current_theme_supports( 'html5', 'caption' );    
+        $int_value = $html5 ? $int_value : ( 10 + $int_value );
+        return $name . ': ' . (int) $int_value . 'px';
+    }
+}
+
+/**
+ * Build tag with name, attributes and content.
+ * 
+ * @param string $name Tag name.
+ * @param array $attr Attributes of the tag.
+ * @param string $content String content.
+ * 
+ * @return string HTML content.
+ */
+function build_tag($name, $attr, $content = null) {
+    $tag = "<$name ";
+    $attributes = array();
+    
+    foreach ($attr as $key => $value) {
+        $attributes[] = "$key=\"$value\"";
+    }
+    $tag .=  join(' ', $attributes);
+    
+    return $tag . ">" . $content . "</$name>";
+}
+
+/**
+ *  Checks if a string ends with a given substring
+ * 
+ * @param string $haystack The string to search in.
+ * @param string $needle The substring to search for in the haystack.
+ * 
+ * @return boolen Returns true if haystack ends with needle, false otherwise.
+ */
+function str_endWith($haystack, $needle) {
+    return substr($haystack, (strlen($haystack) - strlen($needle)), 
+            strlen($needle)) === $needle;    
+}
+ 
+/**
  * Register all shortcodes.
  */
 function register_shortcodes() {
-   add_shortcode('static_image', 'static_image');
-   add_shortcode('post_images', 'post_images');
-   add_shortcode('download_link', 'download_link');
-   add_shortcode('underline', 'underline_format');
-   add_shortcode('bold', 'bold_format');
-   add_shortcode('italic', 'italic_format');
-   add_shortcode('quotes', 'quotes_format');
+   add_shortcode('static_image', 'sc_static_image');
+   add_shortcode('post_images', 'sc_post_images');
+   add_shortcode('download_link', 'sc_download_link');
+   add_shortcode('underline', 'sc_underline_format');
+   add_shortcode('bold', 'sc_bold_format');
+   add_shortcode('italic', 'sc_italic_format');
+   add_shortcode('quotes', 'sc_quotes_format');
+   add_shortcode('caption_image', 'sc_caption_image');
 }
 
 // Add registration to WordPress’ initialization action.

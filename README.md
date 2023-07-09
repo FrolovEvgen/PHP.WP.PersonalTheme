@@ -69,6 +69,7 @@ None.
 * `underline` - Creates underline decoration for specified content.
 * `bold` - Creates bold decoration for specified content.
 * `italic` - Creates italic decoration for specified content.
+* `caption_image` - Builds the image with caption.
 
 ### [static_image]
 
@@ -164,6 +165,23 @@ Creates italic decoration for specified content.
 
 * `[italic]Text[/italic]`
 * `[italic class="RedText"]Text[/italic]`
+
+### [caption_image]
+
+Builds the image with caption.
+
+#### Attributes
+
+* `id` - ID of the div element for the caption.
+* `width` -  The width of the caption, in pixels or %.
+* `max-width` - The max width of the caption, in pixels or %.
+* `align`- (optional) Class name that aligns the caption. Default 'alignnone'. Accepts 'alignleft', 'aligncenter', alignright', 'alignnone'.
+* `caption`- (optional) The caption text.
+* `class`- (optional) Additional class name(s) added to the caption container.
+
+#### Examples
+
+* `[caption_image id="attachment_97" class="img" align="aligncenter" max-width="231"]<img src="http://wordpress.tst:81/wp-content/uploads/2020/06/lcage-231x300.jpg" alt="Alt" width="100%" height="auto" class="size-medium wp-image-97" /> podpis 1[/caption_image]`
 
 ## Link.
 
