@@ -230,7 +230,7 @@ function get_icon($path) {
     } else {
         $icon = $extension . '.png';
     }
-    return static_image(array('name' => $icon, 'alt' => ''));
+    return sc_static_image(array('name' => $icon, 'alt' => ''));
 }
 
 /**
